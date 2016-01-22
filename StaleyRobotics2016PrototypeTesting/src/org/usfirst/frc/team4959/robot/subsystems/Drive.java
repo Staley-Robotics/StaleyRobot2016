@@ -18,34 +18,37 @@ public class Drive extends Subsystem {
 	
     SpeedController lDrive = RobotMap.lDriveMotor;
     SpeedController rDrive = RobotMap.rDriveMotor;
-    
-    Gyro gyro = RobotMap.gyro;
-    
+        
     RobotDrive drive = RobotMap.driveTrain;
-    
-    public Drive() {
-    	gyro.reset();
-    }
     
     public void initDefaultCommand() {
         setDefaultCommand(new JoystickDrive());
     }
     
-    public void yoloDrive(double speed) {
-//    	drive.tankDrive(-speed, -speed);
-    	drive.tankDrive(speed, speed);
+    public void yoloDrive(double left, double right) {
+    	drive.tankDrive(-left, -right);
+    }
+    
+    public void worldOfTanksDrive(double forward, double backward, double rotate) {
+//    	if(backward > 0) {
+//    		drive.tankDrive(-backward, -backward);
+//    	} else if (forward > 0) {
+//    		drive.tankDrive(forward, forward);
+//    	} else {
+//    		drive.arcadeDrive(0, -rotate);
+//    	}
+    	
+    	if(backward > 0) {
+    		drive.arcadeDrive(-backward, -rotate);
+    	} else if (forward > 0) {
+    		drive.arcadeDrive(forward, -rotate);
+    	} else {
+    		drive.arcadeDrive(0, -rotate);
+    	}
     }
     
     public void stopDrive(){
     	drive.drive(0, 0);
-    }
-    
-    public double getAngle() {
-    	return gyro.getAngle();
-    }
-    
-    public double getRotationRate() {
-    	return gyro.getRate();
     }
     
 }

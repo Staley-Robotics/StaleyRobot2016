@@ -1,11 +1,7 @@
 package org.usfirst.frc.team4959.robot;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
-
-import org.usfirst.frc.team4959.robot.commands.ExampleCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -40,28 +36,36 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	
 	
-	//public Joystick xboxController;
+	public Joystick xboxController;
 	public Joystick joystick;
 	
 	public OI(){
-		//xboxController = new Joystick(0);
+		xboxController = new Joystick(0);
 		joystick = new Joystick(1);
 	}
 	
-//	public double getRightStickX() {
-//		return xboxController.getRawAxis(5);
-//	}
-//	public double getLeftStickY() {
-//		return xboxController.getRawAxis(0);
-//	}
-	
-	
-	public double getJoystickY() {
-		return joystick.getY();
+	// xbox controller left joystick
+	public double getLeftStickX() {
+		return xboxController.getRawAxis(0);
 	}
-	public double getJoystickX() {
-		return joystick.getX();
+	public double getLeftStickY() {
+		return xboxController.getRawAxis(1);
 	}
-	//ignore this for now
+	
+	// xbox controller right joystick
+	public double getRightStickX() {
+		return xboxController.getRawAxis(4);
+	}
+	public double getRightStickY() {
+		return xboxController.getRawAxis(5);
+	}
+	
+	// xbox controller triggers
+	public double getLeftTrigger() {
+		return xboxController.getRawAxis(2);
+	}
+	public double getRightTrigger() {
+		return xboxController.getRawAxis(3);
+	}
 }
 

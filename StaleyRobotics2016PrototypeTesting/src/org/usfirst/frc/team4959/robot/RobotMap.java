@@ -12,17 +12,14 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 public class RobotMap {
 	public static SpeedController lDriveMotor;
 	public static SpeedController rDriveMotor;
-	public static Gyro gyro;
 	//Above are my two drive motors
 	public static RobotDrive driveTrain;
 	
 	
 	public static void init(){
-		lDriveMotor = new Talon(2);
-		rDriveMotor = new Talon(1);
+		lDriveMotor = new Talon(1);
+		rDriveMotor = new Talon(2);
 		driveTrain = new RobotDrive(lDriveMotor, rDriveMotor);
-		
-		gyro = new AnalogGyro(0);
 
     	driveTrain.setSafetyEnabled(true);
     	driveTrain.setExpiration(0.1);
