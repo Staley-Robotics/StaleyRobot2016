@@ -6,9 +6,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team4959.robot.commands.ExampleCommand;
-import org.usfirst.frc.team4959.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team4959.robot.commands.RunShooter;
+import org.usfirst.frc.team4959.robot.subsystems.Shooter;
 import org.usfirst.frc.team4959.robot.subsystems.Drive;
+import org.usfirst.frc.team4959.robot.subsystems.Intake;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -18,8 +19,9 @@ import org.usfirst.frc.team4959.robot.subsystems.Drive;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static Drive drive;
+	public static final Shooter shooter = new Shooter();
+	public static final Intake intake = new Intake();
+	public static Drive drive = new Drive();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -31,9 +33,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	RobotMap.init();
 
-		drive = new Drive();
-        // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
+    	// instantiate the command used for the autonomous period
+        autonomousCommand = new RunShooter(5);
         //This is where I decide between different Autos
 		oi = new OI();
     }

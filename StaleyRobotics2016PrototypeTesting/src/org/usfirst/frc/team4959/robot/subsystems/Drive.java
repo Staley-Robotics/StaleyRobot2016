@@ -30,16 +30,8 @@ public class Drive extends Subsystem {
     }
     
     public void worldOfTanksDrive(double forward, double backward, double rotate) {
-//    	if(backward > 0) {
-//    		drive.tankDrive(-backward, -backward);
-//    	} else if (forward > 0) {
-//    		drive.tankDrive(forward, forward);
-//    	} else {
-//    		drive.arcadeDrive(0, -rotate);
-//    	}
-    	
     	if(backward > 0) {
-    		drive.arcadeDrive(-backward, -rotate);
+    		drive.arcadeDrive(-backward, rotate);
     	} else if (forward > 0) {
     		drive.arcadeDrive(forward, -rotate);
     	} else {

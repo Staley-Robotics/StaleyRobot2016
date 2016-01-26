@@ -1,7 +1,12 @@
 package org.usfirst.frc.team4959.robot;
 
+import org.usfirst.frc.team4959.robot.commands.RunIntake;
+import org.usfirst.frc.team4959.robot.commands.RunShooter;
+import org.usfirst.frc.team4959.robot.commands.ShootSequence;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -40,32 +45,49 @@ public class OI {
 	public Joystick joystick;
 	
 	public OI(){
-		xboxController = new Joystick(0);
-		joystick = new Joystick(1);
+		
+	// Xbox Controller
+		xboxController = new Joystick(RobotMap.XBOX_PORT);
+		
+		
+	// Joystick
+		joystick = new Joystick(RobotMap.JOYSTICK_PORT);
+		
+		// shoot button
+		Button shoot = new JoystickButton(joystick, RobotMap.BUTTON_ONE);
+//		shoot.whenPressed(new ShootSequence());
+		shoot.whenPressed(new RunShooter(10));
+		
+		// intake button
+		Button intake = new JoystickButton(joystick, RobotMap.BUTTON_TWO);	
+		intake.whenPressed(new RunIntake(3));
 	}
 	
 	// xbox controller left joystick
 	public double getLeftStickX() {
-		return xboxController.getRawAxis(0);
+		return xboxController.getRawAxis(RobotMap.LEFT_X_AXIS);
 	}
 	public double getLeftStickY() {
-		return xboxController.getRawAxis(1);
+		return xboxController.getRawAxis(RobotMap.LEFT_Y_AXIS);
 	}
 	
 	// xbox controller right joystick
 	public double getRightStickX() {
-		return xboxController.getRawAxis(4);
+		return xboxController.getRawAxis(RobotMap.RIGHT_X_AXIS);
 	}
 	public double getRightStickY() {
-		return xboxController.getRawAxis(5);
+		return xboxController.getRawAxis(RobotMap.RIGHT_Y_AXIS);
 	}
 	
 	// xbox controller triggers
 	public double getLeftTrigger() {
-		return xboxController.getRawAxis(2);
+		return xboxController.getRawAxis(RobotMap.LEFT_TRIGGER);
 	}
 	public double getRightTrigger() {
-		return xboxController.getRawAxis(3);
+		return xboxController.getRawAxis(RobotMap.RIGHT_TRIGGER);
 	}
+	
+	// joystick
+	
 }
 
