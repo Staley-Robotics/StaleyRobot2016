@@ -28,31 +28,39 @@ public class RobotMap {
 	// Joystick
 	public static final int BUTTON_ONE = 1;
 	public static final int BUTTON_TWO = 2;
+	public static final int BUTTON_THREE = 3;
+	public static final int BUTTON_FOUR = 4;
 	
 	
 	// Ports
-	public static final int LEFT_DRIVE_MOTOR = 1;
-	public static final int RIGHT_DRIVE_MOTOR = 2;
-	public static final int SHOOTER_MOTOR = 3;
-	public static final int INTAKE_MOTOR = 4;
+	public static final int LEFT_DRIVE_MOTOR_PORT = 1;
+	public static final int RIGHT_DRIVE_MOTOR_PORT = 2;
+	public static final int LEFT_SHOOTER_MOTOR_PORT = 3;
+	public static final int RIGHT_SHOOTER_MOTOR_PORT = 4;
+	public static final int INTAKE_MOTOR_PORT = 5;
+	public static final int SERVO_PORT = 6;
+	public static final int LIMIT_SWITCH_PORT = 1;
 
 
 //******************************Objects and Initializations******************************\\
 		
 		
 	// Drivetrain
-	public static SpeedController lDriveMotor = new Talon(LEFT_DRIVE_MOTOR);
-	public static SpeedController rDriveMotor = new Talon(RIGHT_DRIVE_MOTOR);
+	public static SpeedController lDriveMotor = new Talon(LEFT_DRIVE_MOTOR_PORT);
+	public static SpeedController rDriveMotor = new Talon(RIGHT_DRIVE_MOTOR_PORT);
 		
 	public static RobotDrive driveTrain = new RobotDrive(lDriveMotor, rDriveMotor);
 
 		
 	// Shooter
-	public static SpeedController shooterMotor = new Talon(SHOOTER_MOTOR);
+	public static SpeedController leftShooterMotor = new Talon(LEFT_SHOOTER_MOTOR_PORT);
+	public static SpeedController rightShooterMotor = new Talon(RIGHT_SHOOTER_MOTOR_PORT);
+	public static Servo servo = new Servo(SERVO_PORT);
 		
 		
 	// Intake
-	public static SpeedController intakeMotor = new Talon(INTAKE_MOTOR);
+	public static SpeedController intakeMotor = new Talon(INTAKE_MOTOR_PORT);
+	public static DigitalInput limitSwitch = new DigitalInput(LIMIT_SWITCH_PORT);
 		
 		
 	public static void init(){		

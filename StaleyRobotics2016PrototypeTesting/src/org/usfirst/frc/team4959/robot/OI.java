@@ -1,7 +1,9 @@
 package org.usfirst.frc.team4959.robot;
 
 import org.usfirst.frc.team4959.robot.commands.RunIntake;
+import org.usfirst.frc.team4959.robot.commands.RunIntakeButton;
 import org.usfirst.frc.team4959.robot.commands.RunShooter;
+import org.usfirst.frc.team4959.robot.commands.SetServo;
 import org.usfirst.frc.team4959.robot.commands.ShootSequence;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -55,12 +57,20 @@ public class OI {
 		
 		// shoot button
 		Button shoot = new JoystickButton(joystick, RobotMap.BUTTON_ONE);
-//		shoot.whenPressed(new ShootSequence());
-		shoot.whenPressed(new RunShooter(10));
+		shoot.whenPressed(new ShootSequence());
+//		shoot.whenPressed(new RunShooter(10));
 		
 		// intake button
 		Button intake = new JoystickButton(joystick, RobotMap.BUTTON_TWO);	
-		intake.whenPressed(new RunIntake(3));
+		intake.whenPressed(new RunIntake());
+		
+		// stop intake button
+		Button stopIntake = new JoystickButton(joystick, RobotMap.BUTTON_THREE);
+		stopIntake.whenPressed(new RunIntakeButton(0));
+		
+		// servo button
+		Button servo = new JoystickButton(joystick, RobotMap.BUTTON_FOUR);
+		servo.whenPressed(new SetServo());
 	}
 	
 	// xbox controller left joystick

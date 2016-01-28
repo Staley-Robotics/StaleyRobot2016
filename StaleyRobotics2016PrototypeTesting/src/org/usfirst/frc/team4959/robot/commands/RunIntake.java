@@ -1,31 +1,28 @@
 package org.usfirst.frc.team4959.robot.commands;
 
 import org.usfirst.frc.team4959.robot.Robot;
+import org.usfirst.frc.team4959.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
 public class RunIntake extends Command {
-
-	private static final Timer TIMER = new Timer();
 	
-	private double time = 0;
+	private final double SPEED = 0.45;
 
-    private static final double SPEED = 0.6;
+    DigitalInput limitSwitch = RobotMap.limitSwitch;
 	
-    public RunIntake(double time) {
+    public RunIntake() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
-        
-        this.time = time;
+        // eg. requires(chassis);
+    	requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	TIMER.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,23 +32,16 @@ public class RunIntake extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	while(TIMER.get() < time)
-        {
-        return false;
-        }   
-    	return true;
+        return limitSwitch.get();
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.intake.stopIntake();
-    	TIMER.stop();
-    	TIMER.reset();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.intake.stopIntake();
     }
 }

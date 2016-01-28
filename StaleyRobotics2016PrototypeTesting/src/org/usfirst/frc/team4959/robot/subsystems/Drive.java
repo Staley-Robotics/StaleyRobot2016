@@ -15,10 +15,7 @@ import org.usfirst.frc.team4959.robot.commands.JoystickDrive;
  *  Tyler sucks @ building!
  */
 public class Drive extends Subsystem {
-	
-    SpeedController lDrive = RobotMap.lDriveMotor;
-    SpeedController rDrive = RobotMap.rDriveMotor;
-        
+
     RobotDrive drive = RobotMap.driveTrain;
     
     public void initDefaultCommand() {
@@ -34,6 +31,16 @@ public class Drive extends Subsystem {
     		drive.arcadeDrive(-backward, rotate);
     	} else if (forward > 0) {
     		drive.arcadeDrive(forward, -rotate);
+    	} else {
+    		drive.arcadeDrive(0, -rotate);
+    	}
+    }
+    
+    public void testShooterDrive(double forward, double backward, double rotate) {
+    	if(backward > 0) {
+    		drive.arcadeDrive(-backward * 1, rotate);
+    	} else if (forward > 0) {
+    		drive.arcadeDrive(forward * 1, -rotate);
     	} else {
     		drive.arcadeDrive(0, -rotate);
     	}

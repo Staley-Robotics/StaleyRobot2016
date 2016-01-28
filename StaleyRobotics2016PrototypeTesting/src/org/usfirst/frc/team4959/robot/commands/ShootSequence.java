@@ -13,7 +13,7 @@ public class ShootSequence extends CommandGroup {
     
     public  ShootSequence() {
     	addParallel(new RunShooter(RUN_SHOOTER_TIME));
-//    	addSequential(new Delay(DELAY_TIME));
-//    	addSequential(new RunIntake(RUN_INTAKE_TIME));
+    	addSequential(new Delay(DELAY_TIME));
+    	addSequential(new RunIntakeButton(RUN_INTAKE_TIME));
     }
 }
