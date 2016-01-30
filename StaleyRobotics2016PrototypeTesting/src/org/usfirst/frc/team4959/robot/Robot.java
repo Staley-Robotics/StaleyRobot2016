@@ -1,15 +1,17 @@
 
 package org.usfirst.frc.team4959.robot;
+import edu.wpi.first.wpilibj.CameraServer;
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.Image;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team4959.robot.commands.RunShooter;
+import org.usfirst.frc.team4959.robot.commands.RunShooterButton;
 import org.usfirst.frc.team4959.robot.subsystems.Shooter;
 import org.usfirst.frc.team4959.robot.subsystems.Drive;
-import org.usfirst.frc.team4959.robot.subsystems.Intake;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -18,9 +20,12 @@ import org.usfirst.frc.team4959.robot.subsystems.Intake;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	
+//	CameraServer server;
+//	int session;
+//	Image frame;
+	
 	public static final Shooter shooter = new Shooter();
-	public static final Intake intake = new Intake();
 	public static Drive drive = new Drive();
 	public static OI oi;
 
@@ -32,9 +37,16 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	RobotMap.init();
+    	
+//    	server = CameraServer.getInstance();
+//    	server.setQuality(50);
+//    	server.startAutomaticCapture("cam0");
+    	
+//    	LiveWindow.addActuator("Shooter", ., component);
+//    	LiveWindow.addSensor("Shooter", "Encoder", RobotMap.encoder);
 
     	// instantiate the command used for the autonomous period
-        autonomousCommand = new RunShooter(5);
+        autonomousCommand = new RunShooterButton(5);
         //This is where I decide between different Autos
 		oi = new OI();
     }

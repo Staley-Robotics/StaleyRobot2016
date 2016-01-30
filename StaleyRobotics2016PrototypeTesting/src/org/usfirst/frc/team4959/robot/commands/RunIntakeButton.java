@@ -10,15 +10,15 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RunIntakeButton extends Command {
 
-	private static final Timer TIMER = new Timer();
-	
-	private double time = 0;
-
-    private static final double SPEED = 0.6;
-	
+    private static final Timer TIMER = new Timer();
+    
+    private double time;
+    
+    private static final double SPEED = -0.3;
+    
     public RunIntakeButton(double time) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
+        requires(Robot.shooter);
         
         this.time = time;
     }
@@ -30,21 +30,20 @@ public class RunIntakeButton extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.runIntake(SPEED);
+    	Robot.shooter.runShooter(SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	while(TIMER.get() < time)
-        {
-        return false;
-        }   
-    	return true;
+       	while(TIMER.get() < time) {
+       		return false;
+       	}   
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.stopIntake();
+    	Robot.shooter.stopShooter();
     	TIMER.stop();
     	TIMER.reset();
     }
@@ -52,6 +51,6 @@ public class RunIntakeButton extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.intake.stopIntake();
+    	Robot.shooter.stopShooter();
     }
 }

@@ -11,14 +11,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RunIntake extends Command {
 	
-	private final double SPEED = 0.45;
+	private final double SPEED = -0.3;
 
     DigitalInput limitSwitch = RobotMap.limitSwitch;
 	
     public RunIntake() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.intake);
+    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -27,21 +26,23 @@ public class RunIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.runIntake(SPEED);
+    	Robot.shooter.runShooter(SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return limitSwitch.get();
+//        return limitSwitch.get();
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.stopIntake();
+//    	Robot.shooter.stopShooter();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.shooter.stopShooter();
     }
 }

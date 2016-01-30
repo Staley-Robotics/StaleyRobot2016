@@ -9,11 +9,9 @@ public class ShootSequence extends CommandGroup {
 	
 	private static final double RUN_SHOOTER_TIME = 5;
 	private static final double DELAY_TIME = 2;
-	private static final double RUN_INTAKE_TIME = 3;
     
     public  ShootSequence() {
-    	addParallel(new RunShooter(RUN_SHOOTER_TIME));
+    	addParallel(new RunShooterButton(RUN_SHOOTER_TIME));
     	addSequential(new Delay(DELAY_TIME));
-    	addSequential(new RunIntakeButton(RUN_INTAKE_TIME));
     }
 }

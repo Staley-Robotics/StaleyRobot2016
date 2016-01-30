@@ -36,16 +36,6 @@ public class Drive extends Subsystem {
     	}
     }
     
-    public void testShooterDrive(double forward, double backward, double rotate) {
-    	if(backward > 0) {
-    		drive.arcadeDrive(-backward * 1, rotate);
-    	} else if (forward > 0) {
-    		drive.arcadeDrive(forward * 1, -rotate);
-    	} else {
-    		drive.arcadeDrive(0, -rotate);
-    	}
-    }
-    
     public void stopDrive(){
     	drive.drive(0, 0);
     }
