@@ -37,10 +37,11 @@ public class RobotMap {
 	public static final int RIGHT_DRIVE_MOTOR_PORT = 2;
 	public static final int LEFT_SHOOTER_MOTOR_PORT = 3;
 	public static final int RIGHT_SHOOTER_MOTOR_PORT = 4;
-	public static final int SHOOTER_PUSHER_MOTOR_PORT = 5;
-	public static final int LIMIT_SWITCH_PORT = 1;
+	public static final int SHOOTER_PUSHER_MOTOR_PORT = 6;
+	public static final int ARM_MOTOR_PORT = 5;
 	public static final int ARM_ENCODER_PORT_ONE = 0;
 	public static final int ARM_ENCODER_PORT_TWO = 1;
+	public static final int LIMIT_SWITCH_PORT = 3;
 
 
 //******************************Objects and Initializations******************************\\
@@ -58,7 +59,8 @@ public class RobotMap {
 	public static SpeedController rightShooterMotor = new Talon(RIGHT_SHOOTER_MOTOR_PORT);
 	public static SpeedController shooterPusherMotor = new Talon(SHOOTER_PUSHER_MOTOR_PORT);
 	public static DigitalInput limitSwitch = new DigitalInput(LIMIT_SWITCH_PORT);
-//	public static Encoder armEncoder = new Encoder(ARM_ENCODER_PORT_ONE, ARM_ENCODER_PORT_TWO, false, Encoder.EncodingType.k4X);
+	public static Encoder armEncoder = new Encoder(ARM_ENCODER_PORT_ONE, ARM_ENCODER_PORT_TWO);
+	public static SpeedController armMotor = new Talon(ARM_MOTOR_PORT);
 		
 		
 	public static void init(){		
@@ -66,7 +68,7 @@ public class RobotMap {
     	driveTrain.setExpiration(0.1);
     	driveTrain.setSensitivity(0.5);
     	driveTrain.setMaxOutput(1);
-    	
+    	    	    	
 //    	armEncoder.setMaxPeriod(.1);
 //    	armEncoder.setMinRate(10);
 //    	armEncoder.setDistancePerPulse(5);

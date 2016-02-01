@@ -4,6 +4,7 @@ import org.usfirst.frc.team4959.robot.commands.RunIntake;
 import org.usfirst.frc.team4959.robot.commands.RunIntakeButton;
 import org.usfirst.frc.team4959.robot.commands.RunShooter;
 import org.usfirst.frc.team4959.robot.commands.RunShooterButton;
+import org.usfirst.frc.team4959.robot.commands.SetArm;
 import org.usfirst.frc.team4959.robot.commands.ShootSequence;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -55,18 +56,18 @@ public class OI {
 	// Joystick
 		joystick = new Joystick(RobotMap.JOYSTICK_PORT);
 		
-		// shoot button
+	// shoot button
 		Button shoot = new JoystickButton(joystick, RobotMap.BUTTON_ONE);
 		shoot.whileHeld(new RunShooter());
 //		shoot.whenPressed(new RunShooterButton(3));
 		
-		// intake button
+	// intake button
 		Button intake = new JoystickButton(joystick, RobotMap.BUTTON_TWO);	
 		intake.whileHeld(new RunIntake());
 		
-		// stop intake button
-		Button stopIntake = new JoystickButton(joystick, RobotMap.BUTTON_THREE);
-		stopIntake.whenPressed(new RunIntakeButton(0));
+	// set arm button
+		Button setArm = new JoystickButton(joystick, RobotMap.BUTTON_THREE);
+		setArm.whenPressed(new SetArm());
 		
 	}
 	

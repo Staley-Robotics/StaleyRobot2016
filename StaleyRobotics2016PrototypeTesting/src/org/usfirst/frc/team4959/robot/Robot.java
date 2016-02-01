@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team4959.robot.commands.RunShooterButton;
 import org.usfirst.frc.team4959.robot.subsystems.Shooter;
+import org.usfirst.frc.team4959.robot.subsystems.Arm;
 import org.usfirst.frc.team4959.robot.subsystems.Drive;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,11 +22,10 @@ import org.usfirst.frc.team4959.robot.subsystems.Drive;
  */
 public class Robot extends IterativeRobot {
 	
-//	CameraServer server;
-//	int session;
-//	Image frame;
+	CameraServer server;
 	
 	public static final Shooter shooter = new Shooter();
+	public static final Arm arm = new Arm();
 	public static Drive drive = new Drive();
 	public static OI oi;
 
@@ -38,12 +38,10 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	RobotMap.init();
     	
-//    	server = CameraServer.getInstance();
-//    	server.setQuality(50);
-//    	server.startAutomaticCapture("cam0");
-    	
-//    	LiveWindow.addActuator("Shooter", ., component);
-//    	LiveWindow.addSensor("Shooter", "Encoder", RobotMap.encoder);
+    	server = CameraServer.getInstance();
+    	server.setQuality(50);
+    	server.startAutomaticCapture("cam0");
+  
 
     	// instantiate the command used for the autonomous period
         autonomousCommand = new RunShooterButton(5);

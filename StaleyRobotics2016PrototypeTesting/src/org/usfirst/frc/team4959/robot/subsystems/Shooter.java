@@ -16,7 +16,6 @@ public class Shooter extends Subsystem {
      
 	SpeedController leftMotor = RobotMap.leftShooterMotor;
 	SpeedController rightMotor = RobotMap.rightShooterMotor;
-//	Encoder encoder = RobotMap.encoder;
 	SpeedController pushMotor = RobotMap.shooterPusherMotor;
 	
 
@@ -25,8 +24,8 @@ public class Shooter extends Subsystem {
     }
     
     public void runShooter(double speed) {
-    	leftMotor.set(-speed);
-    	rightMotor.set(speed);
+    	leftMotor.set(speed);
+    	rightMotor.set(-speed);
     }
     
     public void stopShooter() {
