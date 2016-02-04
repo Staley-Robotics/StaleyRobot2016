@@ -6,6 +6,7 @@ import org.usfirst.frc.team4959.robot.commands.RunShooter;
 import org.usfirst.frc.team4959.robot.commands.RunShooterButton;
 import org.usfirst.frc.team4959.robot.commands.SetArm;
 import org.usfirst.frc.team4959.robot.commands.ShootSequence;
+import org.usfirst.frc.team4959.robot.commands.TestSetArm;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -61,14 +62,18 @@ public class OI {
 		shoot.whileHeld(new RunShooter());
 //		shoot.whenPressed(new RunShooterButton(3));
 		
-	// intake button
+	// Intakes button
 		Button intake = new JoystickButton(joystick, RobotMap.BUTTON_TWO);	
 		intake.whileHeld(new RunIntake());
 		
 	// set arm button
 		Button setArm = new JoystickButton(joystick, RobotMap.BUTTON_THREE);
-		setArm.whenPressed(new SetArm());
+		setArm.whenPressed(new SetArm(90));
+//		setArm.whenPressed(new TestSetArm(90));
 		
+		Button setArm2 = new JoystickButton(joystick, 4);
+		setArm2.whenPressed(new SetArm(45));
+//		setArm2.whenPressed(new TestSetArm(45));
 	}
 	
 	// xbox controller left joystick

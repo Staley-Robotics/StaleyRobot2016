@@ -24,8 +24,8 @@ public class Shooter extends Subsystem {
     }
     
     public void runShooter(double speed) {
-    	leftMotor.set(speed);
-    	rightMotor.set(-speed);
+    	leftMotor.set(-speed);
+    	rightMotor.set(speed);
     }
     
     public void stopShooter() {

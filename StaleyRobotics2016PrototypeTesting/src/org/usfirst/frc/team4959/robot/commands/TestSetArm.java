@@ -1,20 +1,18 @@
 package org.usfirst.frc.team4959.robot.commands;
 
 import org.usfirst.frc.team4959.robot.Robot;
-import org.usfirst.frc.team4959.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class SetArm extends Command {
-		
+public class TestSetArm extends Command {
+
 	private double armPower = 0.1;
-	private double angle;
+	private double angle = 0;
 	
-    public SetArm(double angle) {
+    public TestSetArm(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.arm);
@@ -27,7 +25,15 @@ public class SetArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.goToAngle(angle, armPower);
+    	System.out.println("Angle: " + Robot.arm.getArmPos());
+    	
+    	if(Robot.arm.getArmPos() > angle) {
+    		Robot.arm.runArm(-armPower * 1.5);
+    		System.out.println("going down");
+    	} else if(Robot.arm.getArmPos() < angle) {
+    		Robot.arm.runArm(armPower);
+    		System.out.println("going up");
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

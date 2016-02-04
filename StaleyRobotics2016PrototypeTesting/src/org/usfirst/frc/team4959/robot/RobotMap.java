@@ -2,6 +2,8 @@ package org.usfirst.frc.team4959.robot;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -59,7 +61,7 @@ public class RobotMap {
 	public static SpeedController rightShooterMotor = new Talon(RIGHT_SHOOTER_MOTOR_PORT);
 	public static SpeedController shooterPusherMotor = new Talon(SHOOTER_PUSHER_MOTOR_PORT);
 	public static DigitalInput limitSwitch = new DigitalInput(LIMIT_SWITCH_PORT);
-	public static Encoder armEncoder = new Encoder(ARM_ENCODER_PORT_ONE, ARM_ENCODER_PORT_TWO);
+	public static Encoder armEncoder = new Encoder(ARM_ENCODER_PORT_ONE, ARM_ENCODER_PORT_TWO, false, Encoder.EncodingType.k4X);
 	public static SpeedController armMotor = new Talon(ARM_MOTOR_PORT);
 		
 		
@@ -68,11 +70,15 @@ public class RobotMap {
     	driveTrain.setExpiration(0.1);
     	driveTrain.setSensitivity(0.5);
     	driveTrain.setMaxOutput(1);
-    	    	    	
+//    	    	    	
 //    	armEncoder.setMaxPeriod(.1);
-//    	armEncoder.setMinRate(10);
-//    	armEncoder.setDistancePerPulse(5);
-//    	armEncoder.setReverseDirection(false);
-//    	armEncoder.setSamplesToAverage(7);
+//    	armEncoder.setMinRate(1);
+//    	armEncoder.setDistancePerPulse(1);
+//    	armEncoder.setReverseDirection(true);
+		armEncoder.setReverseDirection(false);
+    	
+    	LiveWindow.addActuator("Arm", "arm motor", (LiveWindowSendable) armMotor);
+    	LiveWindow.addSensor("Arm", "arm encoder", armEncoder);
+    	
  	}
 }

@@ -14,7 +14,7 @@ public class RunIntakeButton extends Command {
     
     private double time;
     
-    private static final double SPEED = -0.3;
+    private static final double SPEED = -1;
     
     public RunIntakeButton(double time) {
         // Use requires() here to declare subsystem dependencies

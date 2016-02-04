@@ -42,7 +42,6 @@ public class Robot extends IterativeRobot {
     	server.setQuality(50);
     	server.startAutomaticCapture("cam0");
   
-
     	// instantiate the command used for the autonomous period
         autonomousCommand = new RunShooterButton(5);
         //This is where I decide between different Autos
