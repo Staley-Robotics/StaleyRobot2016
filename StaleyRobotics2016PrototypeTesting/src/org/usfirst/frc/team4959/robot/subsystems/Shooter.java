@@ -16,8 +16,8 @@ public class Shooter extends Subsystem {
      
 	SpeedController leftMotor = RobotMap.leftShooterMotor;
 	SpeedController rightMotor = RobotMap.rightShooterMotor;
-	SpeedController pushMotor = RobotMap.shooterPusherMotor;
-	
+			
+	private boolean check;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -33,5 +33,14 @@ public class Shooter extends Subsystem {
     	rightMotor.set(0);
     }
     
+    public boolean checkForShooting() {
+    	return check;
+    }
+    
+    public void setShooting(boolean isShooting) {
+    	check = isShooting;
+    }
+    
+
 }
 

@@ -45,6 +45,7 @@ public class RunShooterButton extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.shooter.stopShooter();
+    	Robot.shooter.setShooting(true);
     	TIMER.stop();
     	TIMER.reset();
     }

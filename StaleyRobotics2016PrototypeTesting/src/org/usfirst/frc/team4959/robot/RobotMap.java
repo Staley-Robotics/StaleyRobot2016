@@ -16,7 +16,7 @@ public class RobotMap {
 //******************************Constants******************************\\
 	
 	
-	// Controller
+	// Controllers
 	public static final int XBOX_PORT = 0;
 	public static final int JOYSTICK_PORT = 1;
 	
@@ -27,56 +27,74 @@ public class RobotMap {
 	public static final int RIGHT_X_AXIS = 4;
 	public static final int RIGHT_Y_AXIS = 5;
 	
-	// Joystick
-	public static final int BUTTON_ONE = 1;
-	public static final int BUTTON_TWO = 2;
-	public static final int BUTTON_THREE = 3;
-	public static final int BUTTON_FOUR = 4;
+	public static final int RIGHT_BUMPER = 5;
+	public static final int LEFT_BUMPER = 6;
 	
 	
 	// Ports
-	public static final int LEFT_DRIVE_MOTOR_PORT = 1;
-	public static final int RIGHT_DRIVE_MOTOR_PORT = 2;
-	public static final int LEFT_SHOOTER_MOTOR_PORT = 3;
-	public static final int RIGHT_SHOOTER_MOTOR_PORT = 4;
-	public static final int SHOOTER_PUSHER_MOTOR_PORT = 6;
-	public static final int ARM_MOTOR_PORT = 5;
+	public static final int FRONT_LEFT_DRIVE_MOTOR_PORT = 1;
+	public static final int BACK_LEFT_DRIVE_MOTOR_PORT = 2;
+	public static final int FRONT_RIGHT_DRIVE_MOTOR_PORT = 3;
+	public static final int BACK_RIGHT_DRIVE_MOTOR_PORT = 4;
+	
+	public static final int LEFT_SHOOTER_MOTOR_PORT = 5;
+	public static final int RIGHT_SHOOTER_MOTOR_PORT = 6;
+		
+	public static final int ARM_MOTOR_PORT = 7;
+	
+	public static final int FLIPPER_MOTOR_PORT = 8;
+	
 	public static final int ARM_ENCODER_PORT_ONE = 0;
 	public static final int ARM_ENCODER_PORT_TWO = 1;
-	public static final int LIMIT_SWITCH_PORT = 3;
+	
+	public static final int SHOOTER_LIMIT_SWITCH_PORT = 3;
+	
+	public static final int FLIPPER_LIMIT_SWITCH_PORT = 4;
+		
+	public static final int SERVO_PORT = 9;
 
 
 //******************************Objects and Initializations******************************\\
 		
 		
 	// Drivetrain
-	public static SpeedController lDriveMotor = new Talon(LEFT_DRIVE_MOTOR_PORT);
-	public static SpeedController rDriveMotor = new Talon(RIGHT_DRIVE_MOTOR_PORT);
+	public static SpeedController flDriveMotor = new Talon(FRONT_LEFT_DRIVE_MOTOR_PORT);
+	public static SpeedController blDriveMotor = new Talon(BACK_LEFT_DRIVE_MOTOR_PORT);
+	public static SpeedController frDriveMotor = new Talon(FRONT_RIGHT_DRIVE_MOTOR_PORT);
+	public static SpeedController brDriveMotor = new Talon(BACK_RIGHT_DRIVE_MOTOR_PORT);
 		
-	public static RobotDrive driveTrain = new RobotDrive(lDriveMotor, rDriveMotor);
+//	public static RobotDrive driveTrain = new RobotDrive(flDriveMotor, blDriveMotor);
+	public static RobotDrive driveTrain = new RobotDrive(flDriveMotor, blDriveMotor, frDriveMotor, brDriveMotor);
+	
+	public static Gyro gyro = new AnalogGyro(0); 
 
 		
 	// Shooter
 	public static SpeedController leftShooterMotor = new Talon(LEFT_SHOOTER_MOTOR_PORT);
 	public static SpeedController rightShooterMotor = new Talon(RIGHT_SHOOTER_MOTOR_PORT);
-	public static SpeedController shooterPusherMotor = new Talon(SHOOTER_PUSHER_MOTOR_PORT);
-	public static DigitalInput limitSwitch = new DigitalInput(LIMIT_SWITCH_PORT);
-	public static Encoder armEncoder = new Encoder(ARM_ENCODER_PORT_ONE, ARM_ENCODER_PORT_TWO, false, Encoder.EncodingType.k4X);
-	public static SpeedController armMotor = new Talon(ARM_MOTOR_PORT);
 		
+	public static Encoder armEncoder = new Encoder(ARM_ENCODER_PORT_ONE, ARM_ENCODER_PORT_TWO, false, Encoder.EncodingType.k4X);
+	
+	public static Servo servo = new Servo(SERVO_PORT);
+	
+	
+	// Arm
+	public static DigitalInput shooterLimitSwitch = new DigitalInput(SHOOTER_LIMIT_SWITCH_PORT);
+	public static SpeedController armMotor = new Talon(ARM_MOTOR_PORT);
+	
+	
+	// Flipper
+	public static SpeedController flipperMotor = new Talon(FLIPPER_MOTOR_PORT);
+	public static DigitalInput flipperLimitSwitch = new DigitalInput(FLIPPER_LIMIT_SWITCH_PORT);
+	
 		
 	public static void init(){		
     	driveTrain.setSafetyEnabled(true);
     	driveTrain.setExpiration(0.1);
     	driveTrain.setSensitivity(0.5);
     	driveTrain.setMaxOutput(1);
-//    	    	    	
-//    	armEncoder.setMaxPeriod(.1);
-//    	armEncoder.setMinRate(1);
-//    	armEncoder.setDistancePerPulse(1);
-//    	armEncoder.setReverseDirection(true);
-		armEncoder.setReverseDirection(false);
     	
+
     	LiveWindow.addActuator("Arm", "arm motor", (LiveWindowSendable) armMotor);
     	LiveWindow.addSensor("Arm", "arm encoder", armEncoder);
     	

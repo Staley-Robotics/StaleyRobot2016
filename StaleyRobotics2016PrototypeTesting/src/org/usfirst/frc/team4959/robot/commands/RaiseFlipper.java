@@ -9,15 +9,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunShooter extends Command {
+public class RaiseFlipper extends Command {
 
-	private final double SPEED = 1;
-
-    DigitalInput limitSwitch = RobotMap.shooterLimitSwitch;
+	DigitalInput limitSwitch = RobotMap.flipperLimitSwitch;
 	
-    public RunShooter() {
+	private double speed;
+	
+    public RaiseFlipper(double speed) {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.shooter);
+        // eg. requires(chassis);
+    	
+    	this.speed = speed;
+    	
+    	requires(Robot.flipper);
     }
 
     // Called just before this Command runs the first time
@@ -26,22 +30,22 @@ public class RunShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.runShooter(SPEED);
+    	Robot.flipper.raiseFlippers(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return false;
+        return false || limitSwitch.get();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-//    	Robot.shooter.stopShooter();
+    	Robot.flipper.raiseFlippers(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.shooter.stopShooter();
+    	Robot.flipper.raiseFlippers(0);
     }
 }

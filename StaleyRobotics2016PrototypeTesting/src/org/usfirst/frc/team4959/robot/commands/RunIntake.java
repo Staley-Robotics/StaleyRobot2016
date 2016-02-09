@@ -13,7 +13,7 @@ public class RunIntake extends Command {
 	
 	private final double SPEED = -1;
 
-    DigitalInput limitSwitch = RobotMap.limitSwitch;
+    DigitalInput limitSwitch = RobotMap.shooterLimitSwitch;
 	
     public RunIntake() {
         // Use requires() here to declare subsystem dependencies

@@ -1,16 +1,22 @@
 package org.usfirst.frc.team4959.robot;
 
+import org.usfirst.frc.team4959.robot.commands.LowerFlipper;
+import org.usfirst.frc.team4959.robot.commands.RaiseFlipper;
 import org.usfirst.frc.team4959.robot.commands.RunIntake;
 import org.usfirst.frc.team4959.robot.commands.RunIntakeButton;
 import org.usfirst.frc.team4959.robot.commands.RunShooter;
 import org.usfirst.frc.team4959.robot.commands.RunShooterButton;
 import org.usfirst.frc.team4959.robot.commands.SetArm;
+import org.usfirst.frc.team4959.robot.commands.SetServoSequence;
 import org.usfirst.frc.team4959.robot.commands.ShootSequence;
 import org.usfirst.frc.team4959.robot.commands.TestSetArm;
+import org.usfirst.frc.team4959.robot.commands.TurnRightToAngle;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -53,27 +59,38 @@ public class OI {
 	// Xbox Controller
 		xboxController = new Joystick(RobotMap.XBOX_PORT);
 		
+		// lower flipper button
+		Button lowerFlipper = new JoystickButton(xboxController, RobotMap.LEFT_BUMPER);
+		lowerFlipper.whileHeld(new  LowerFlipper(0.1));
+		
+		// raise flipper button
+		Button raiseFlipper = new JoystickButton(xboxController, RobotMap.RIGHT_BUMPER);
+		raiseFlipper.whileHeld(new RaiseFlipper(0.1));
 		
 	// Joystick
 		joystick = new Joystick(RobotMap.JOYSTICK_PORT);
 		
 	// shoot button
-		Button shoot = new JoystickButton(joystick, RobotMap.BUTTON_ONE);
-		shoot.whileHeld(new RunShooter());
+		Button shoot = new JoystickButton(joystick, 1);
+//		shoot.whileHeld(new RunShooter());
 //		shoot.whenPressed(new RunShooterButton(3));
+		shoot.whenPressed(new ShootSequence());
 		
 	// Intakes button
-		Button intake = new JoystickButton(joystick, RobotMap.BUTTON_TWO);	
+		Button intake = new JoystickButton(joystick, 2);	
 		intake.whileHeld(new RunIntake());
 		
 	// set arm button
-		Button setArm = new JoystickButton(joystick, RobotMap.BUTTON_THREE);
+		Button setArm = new JoystickButton(joystick, 3);
 		setArm.whenPressed(new SetArm(90));
-//		setArm.whenPressed(new TestSetArm(90));
 		
 		Button setArm2 = new JoystickButton(joystick, 4);
 		setArm2.whenPressed(new SetArm(45));
-//		setArm2.whenPressed(new TestSetArm(45));
+	
+
+		
+//**********************************Smartdashboard/LiveWindow**********************************\\
+//		LiveWindow.addSensor("YOLO", 0, (LiveWindowSendable) RobotMap.gyro);
 	}
 	
 	// xbox controller left joystick

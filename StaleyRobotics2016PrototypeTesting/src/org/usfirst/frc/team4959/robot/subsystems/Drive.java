@@ -17,6 +17,12 @@ import org.usfirst.frc.team4959.robot.commands.JoystickDrive;
 public class Drive extends Subsystem {
 
     RobotDrive drive = RobotMap.driveTrain;
+    Gyro gyro = RobotMap.gyro;
+    double angle;
+    
+    public Drive() {
+    	gyro.calibrate();
+    }
     
     public void initDefaultCommand() {
         setDefaultCommand(new JoystickDrive());
@@ -27,12 +33,15 @@ public class Drive extends Subsystem {
     }
     
     public void worldOfTanksDrive(double forward, double backward, double rotate) {
-    	if(backward > 0) {
-    		drive.arcadeDrive(-backward, rotate);
+    	double speedModifier = 0.8;
+    	double turnSpeedModifier = 0.5;
+    	
+    	if(backward * speedModifier > 0) {
+    		drive.arcadeDrive(-backward * speedModifier, rotate * turnSpeedModifier);
     	} else if (forward > 0) {
-    		drive.arcadeDrive(forward, -rotate);
+    		drive.arcadeDrive(forward * speedModifier, -rotate * turnSpeedModifier);
     	} else {
-    		drive.arcadeDrive(0, -rotate);
+    		drive.arcadeDrive(0, -rotate * turnSpeedModifier);
     	}
     }
     
@@ -40,5 +49,19 @@ public class Drive extends Subsystem {
     	drive.drive(0, 0);
     }
     
+    public double getGyroAngle() {
+    	double angle = gyro.getAngle() * 100;
+    	System.out.println(angle);
+    	return Math.abs(angle);
+    }
+    
+    public void resetGyro() {
+    	gyro.reset();
+    }
+    
+    public void turnRightAngle(double angle) {
+    	double rotationSpeed = 0.6;
+    	drive.arcadeDrive(0, rotationSpeed);
+    }
 }
 

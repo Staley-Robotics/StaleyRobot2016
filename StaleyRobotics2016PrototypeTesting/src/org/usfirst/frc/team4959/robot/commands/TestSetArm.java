@@ -25,36 +25,24 @@ public class TestSetArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Angle: " + Robot.arm.getArmPos());
-    	
-    	if(Robot.arm.getArmPos() > angle) {
-    		Robot.arm.runArm(-armPower * 1.5);
-    		System.out.println("going down");
-    	} else if(Robot.arm.getArmPos() < angle) {
-    		Robot.arm.runArm(armPower);
-    		System.out.println("going up");
-    	}
+//    	Robot.arm.setAngle(angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if((Robot.arm.getArmPos() >= angle - 2) && (Robot.arm.getArmPos() <= angle + 2)){
-        	System.out.println("is finished");
-    		return true;
-    	} else 
-    		return false;
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	System.out.println("end");
-    	Robot.arm.stopArm();
+    	Robot.arm.runArm(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	System.out.println("is interupted");
-    	Robot.arm.stopArm();
+    	Robot.arm.runArm(0);
     }
 }

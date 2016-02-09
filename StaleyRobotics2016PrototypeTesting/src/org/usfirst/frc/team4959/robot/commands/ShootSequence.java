@@ -13,5 +13,6 @@ public class ShootSequence extends CommandGroup {
     public  ShootSequence() {
     	addParallel(new RunShooterButton(RUN_SHOOTER_TIME));
     	addSequential(new Delay(DELAY_TIME));
+    	addSequential(new SetServoSequence());
     }
 }

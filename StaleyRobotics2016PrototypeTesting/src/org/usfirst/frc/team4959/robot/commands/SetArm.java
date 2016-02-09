@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class SetArm extends Command {
 		
-	private double armPower = 0.1;
+	private double motorPower = 0.2;
 	private double angle;
 	
     public SetArm(double angle) {
@@ -27,28 +27,25 @@ public class SetArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.goToAngle(angle, armPower);
+    	Robot.arm.goToAngle(angle, motorPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if((Robot.arm.getArmPos() >= angle - 2) && (Robot.arm.getArmPos() <= angle + 2)){
-        	System.out.println("is finished");
-    		return true;
-    	} else 
-    		return false;
+    	return Robot.shooter.checkForShooting();
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	System.out.println("end");
-    	Robot.arm.stopArm();
+    	Robot.shooter.setShooting(false);
+    	Robot.arm.runArm(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	System.out.println("is interupted");
-    	Robot.arm.stopArm();
+    	Robot.arm.runArm(0);
     }
 }

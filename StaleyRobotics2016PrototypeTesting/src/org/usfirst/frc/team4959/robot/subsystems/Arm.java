@@ -1,12 +1,12 @@
 package org.usfirst.frc.team4959.robot.subsystems;
 
-import org.usfirst.frc.team4959.robot.PIDSpeedController;
 import org.usfirst.frc.team4959.robot.Robot;
 import org.usfirst.frc.team4959.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,11 +17,11 @@ public class Arm extends Subsystem {
 	
 	SpeedController motor = RobotMap.armMotor;
 	Encoder encoder = RobotMap.armEncoder;
-	PIDSpeedController pid;
 	
+	Servo servo = RobotMap.servo;
+
+		
 	public Arm() {
-		encoder.setPIDSourceType(PIDSourceType.kRate);
-		pid = new PIDSpeedController(encoder, motor, "Arm", "Speed Control");
 	}
 
     public void initDefaultCommand() {
@@ -30,12 +30,16 @@ public class Arm extends Subsystem {
     }
     
     public void goToAngle(double angle, double power) {
+    	double buffer = 5;
+    	
     	System.out.println("Angle: " + getArmPos());
 
-    	if(getArmPos() > angle) {
-    		runArm(-power * 1.5);
+    	if((getArmPos() < angle + buffer) && (getArmPos() > angle - buffer)){
+    		runArm(0);
+    	} else if(getArmPos() > angle - buffer) {
+    		runArm(-power);
     		System.out.println("going down");
-    	} else if(getArmPos() < angle) {
+    	} else if(getArmPos() < angle + buffer) {
     		runArm(power);
     		System.out.println("going up");
     	}
@@ -58,8 +62,8 @@ public class Arm extends Subsystem {
     	motor.set(power);
     }
     
-    public void stopArm() {
-    	motor.set(0);
+    public void setServo(double angle) {
+    	servo.set(angle);
     }
 }
 

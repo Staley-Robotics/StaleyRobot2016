@@ -8,10 +8,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 
 import org.usfirst.frc.team4959.robot.commands.RunShooterButton;
 import org.usfirst.frc.team4959.robot.subsystems.Shooter;
 import org.usfirst.frc.team4959.robot.subsystems.Arm;
+import org.usfirst.frc.team4959.robot.subsystems.BackFlipper;
 import org.usfirst.frc.team4959.robot.subsystems.Drive;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,11 +23,12 @@ import org.usfirst.frc.team4959.robot.subsystems.Drive;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	
+
 	CameraServer server;
 	
 	public static final Shooter shooter = new Shooter();
 	public static final Arm arm = new Arm();
+	public static final BackFlipper flipper = new BackFlipper();
 	public static Drive drive = new Drive();
 	public static OI oi;
 
@@ -41,11 +44,13 @@ public class Robot extends IterativeRobot {
     	server = CameraServer.getInstance();
     	server.setQuality(50);
     	server.startAutomaticCapture("cam0");
-  
+    	
+
     	// instantiate the command used for the autonomous period
         autonomousCommand = new RunShooterButton(5);
         //This is where I decide between different Autos
 		oi = new OI();
+		
     }
 	
 	public void disabledPeriodic() {
