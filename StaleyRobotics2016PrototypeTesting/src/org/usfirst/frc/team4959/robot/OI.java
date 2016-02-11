@@ -1,16 +1,15 @@
 package org.usfirst.frc.team4959.robot;
 
-import org.usfirst.frc.team4959.robot.commands.LowerFlipper;
-import org.usfirst.frc.team4959.robot.commands.RaiseFlipper;
-import org.usfirst.frc.team4959.robot.commands.RunIntake;
-import org.usfirst.frc.team4959.robot.commands.RunIntakeButton;
-import org.usfirst.frc.team4959.robot.commands.RunShooter;
-import org.usfirst.frc.team4959.robot.commands.RunShooterButton;
-import org.usfirst.frc.team4959.robot.commands.SetArm;
-import org.usfirst.frc.team4959.robot.commands.SetServoSequence;
-import org.usfirst.frc.team4959.robot.commands.ShootSequence;
-import org.usfirst.frc.team4959.robot.commands.TestSetArm;
-import org.usfirst.frc.team4959.robot.commands.TurnRightToAngle;
+import org.usfirst.frc.team4959.robot.commands.Arm.SetArm;
+import org.usfirst.frc.team4959.robot.commands.Auto.TurnRightToAngle;
+import org.usfirst.frc.team4959.robot.commands.Flipper.LowerFlipper;
+import org.usfirst.frc.team4959.robot.commands.Flipper.RaiseFlipper;
+import org.usfirst.frc.team4959.robot.commands.Shooter.RunIntake;
+import org.usfirst.frc.team4959.robot.commands.Shooter.RunIntakeButton;
+import org.usfirst.frc.team4959.robot.commands.Shooter.RunShooter;
+import org.usfirst.frc.team4959.robot.commands.Shooter.RunShooterButton;
+import org.usfirst.frc.team4959.robot.commands.Shooter.SetServoSequence;
+import org.usfirst.frc.team4959.robot.commands.Shooter.ShootSequence;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -86,11 +85,10 @@ public class OI {
 		
 		Button setArm2 = new JoystickButton(joystick, 4);
 		setArm2.whenPressed(new SetArm(45));
-	
-
 		
-//**********************************Smartdashboard/LiveWindow**********************************\\
-//		LiveWindow.addSensor("YOLO", 0, (LiveWindowSendable) RobotMap.gyro);
+		Button setServo = new JoystickButton(joystick, 5);
+		setServo.whenPressed(new SetServoSequence());
+
 	}
 	
 	// xbox controller left joystick

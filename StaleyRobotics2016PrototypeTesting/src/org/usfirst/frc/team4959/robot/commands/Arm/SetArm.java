@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4959.robot.commands;
+package org.usfirst.frc.team4959.robot.commands.Arm;
 
 import org.usfirst.frc.team4959.robot.Robot;
 import org.usfirst.frc.team4959.robot.RobotMap;
@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class SetArm extends Command {
 		
-	private double motorPower = 0.2;
+	private double motorPower = 0.3;
 	private double angle;
 	
     public SetArm(double angle) {

@@ -1,16 +1,27 @@
-package org.usfirst.frc.team4959.robot.commands;
+package org.usfirst.frc.team4959.robot.commands.Flipper;
 
 import org.usfirst.frc.team4959.robot.Robot;
+import org.usfirst.frc.team4959.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class JoystickDrive extends Command {
-
-    public JoystickDrive() {
-        requires(Robot.drive);
+public class LowerFlipper extends Command {
+	
+	DigitalInput limitSwitch = RobotMap.flipperLimitSwitch;
+	
+	private double speed;
+	
+    public LowerFlipper(double speed) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	
+    	this.speed = speed;
+    	
+    	requires(Robot.flipper);
     }
 
     // Called just before this Command runs the first time
@@ -19,25 +30,22 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	Robot.drive.yoloDrive(Robot.oi.getLeftStickY(), Robot.oi.getRightStickY());
-    	
-    	Robot.drive.worldOfTanksDrive(Robot.oi.getRightTrigger(), Robot.oi.getLeftTrigger(), Robot.oi.getLeftStickX());
-       
+    	Robot.flipper.lowerFlippers(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return false || limitSwitch.get();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drive.stopDrive();
+    	Robot.flipper.lowerFlippers(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.drive.stopDrive();
+    	Robot.flipper.lowerFlippers(0);
     }
 }

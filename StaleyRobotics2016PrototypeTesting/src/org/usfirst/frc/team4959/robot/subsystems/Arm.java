@@ -22,6 +22,7 @@ public class Arm extends Subsystem {
 
 		
 	public Arm() {
+		
 	}
 
     public void initDefaultCommand() {
@@ -33,20 +34,23 @@ public class Arm extends Subsystem {
     	double buffer = 5;
     	
     	System.out.println("Angle: " + getArmPos());
+    	
+    	double desiredAngle = Math.abs(getArmPos());
 
-    	if((getArmPos() < angle + buffer) && (getArmPos() > angle - buffer)){
+    	if((desiredAngle < angle + buffer) && (desiredAngle > angle - buffer)){
     		runArm(0);
-    	} else if(getArmPos() > angle - buffer) {
-    		runArm(-power);
-    		System.out.println("going down");
-    	} else if(getArmPos() < angle + buffer) {
+    	} else if(desiredAngle > angle - buffer) {
     		runArm(power);
+    		System.out.println("going down");
+    	} else if(desiredAngle < angle + buffer) {
+    		runArm(-power);
     		System.out.println("going up");
     	}
     }
     
     public double getArmPos() {
-    	double clicksPerRotation = 214.5;
+    	double clicksPerRotation = 480;
+//    	double clicksPerRotation = 214.5;
     	double conversionFactor = clicksPerRotation / 360;
     	
     	double clicks = encoder.getDistance();

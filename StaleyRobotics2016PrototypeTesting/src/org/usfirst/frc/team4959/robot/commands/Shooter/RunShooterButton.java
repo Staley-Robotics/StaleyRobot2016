@@ -1,22 +1,23 @@
-package org.usfirst.frc.team4959.robot.commands;
 
-import org.usfirst.frc.team4959.robot.Robot;
+package org.usfirst.frc.team4959.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team4959.robot.Robot;
+
 /**
  *
  */
-public class RunIntakeButton extends Command {
-
+public class RunShooterButton extends Command {
+	
     private static final Timer TIMER = new Timer();
     
     private double time;
     
-    private static final double SPEED = -1;
+    private static final double SPEED = 1;
     
-    public RunIntakeButton(double time) {
+    public RunShooterButton(double time) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.shooter);
         
@@ -44,6 +45,7 @@ public class RunIntakeButton extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.shooter.stopShooter();
+    	Robot.shooter.setShooting(true);
     	TIMER.stop();
     	TIMER.reset();
     }

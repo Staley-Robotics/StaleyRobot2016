@@ -1,27 +1,31 @@
-package org.usfirst.frc.team4959.robot.commands;
+package org.usfirst.frc.team4959.robot.commands.Shooter;
 
 import org.usfirst.frc.team4959.robot.Robot;
-import org.usfirst.frc.team4959.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class RunShooter extends Command {
+public class RunIntakeButton extends Command {
 
-	private final double SPEED = 1;
-
-    DigitalInput limitSwitch = RobotMap.shooterLimitSwitch;
-	
-    public RunShooter() {
+    private static final Timer TIMER = new Timer();
+    
+    private double time;
+    
+    private static final double SPEED = -1;
+    
+    public RunIntakeButton(double time) {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.shooter);
+        requires(Robot.shooter);
+        
+        this.time = time;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	TIMER.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,12 +35,17 @@ public class RunShooter extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return false;
+       	while(TIMER.get() < time) {
+       		return false;
+       	}   
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-//    	Robot.shooter.stopShooter();
+    	Robot.shooter.stopShooter();
+    	TIMER.stop();
+    	TIMER.reset();
     }
 
     // Called when another command which requires one or more of the same

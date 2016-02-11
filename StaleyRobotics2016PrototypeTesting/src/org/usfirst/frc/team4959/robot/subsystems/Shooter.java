@@ -2,7 +2,7 @@
 package org.usfirst.frc.team4959.robot.subsystems;
 
 import org.usfirst.frc.team4959.robot.RobotMap;
-import org.usfirst.frc.team4959.robot.commands.RunShooterButton;
+import org.usfirst.frc.team4959.robot.commands.Shooter.RunShooterButton;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Servo;

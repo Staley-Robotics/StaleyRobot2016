@@ -10,8 +10,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 
-import org.usfirst.frc.team4959.robot.commands.RunShooterButton;
 import org.usfirst.frc.team4959.robot.subsystems.Shooter;
+import org.usfirst.frc.team4959.robot.subsystems.Vision;
+import org.usfirst.frc.team4959.robot.commands.Shooter.RunShooterButton;
 import org.usfirst.frc.team4959.robot.subsystems.Arm;
 import org.usfirst.frc.team4959.robot.subsystems.BackFlipper;
 import org.usfirst.frc.team4959.robot.subsystems.Drive;
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static final Shooter shooter = new Shooter();
 	public static final Arm arm = new Arm();
 	public static final BackFlipper flipper = new BackFlipper();
+	public static final Vision vision = new Vision();
 	public static Drive drive = new Drive();
 	public static OI oi;
 
@@ -41,9 +43,9 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	RobotMap.init();
     	
-    	server = CameraServer.getInstance();
-    	server.setQuality(50);
-    	server.startAutomaticCapture("cam0");
+//    	server = CameraServer.getInstance();
+//    	server.setQuality(50);
+//    	server.startAutomaticCapture("cam0");
     	
 
     	// instantiate the command used for the autonomous period
@@ -71,7 +73,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
 		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
+        // Tulip starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
