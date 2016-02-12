@@ -20,9 +20,7 @@ public class JoystickDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 //    	Robot.drive.yoloDrive(Robot.oi.getLeftStickY(), Robot.oi.getRightStickY());
-    	
-    	Robot.vision.getBlob();
-    	
+        	
     	Robot.drive.worldOfTanksDrive(Robot.oi.getRightTrigger(), Robot.oi.getLeftTrigger(), Robot.oi.getLeftStickX());
        
     }
