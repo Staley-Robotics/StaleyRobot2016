@@ -90,7 +90,7 @@ public class RobotMap {
 	
 	
 	// Vision
-//	public static NetworkTable networkTable = NetworkTable.getTable("SmartDashboard");
+	public static NetworkTable networkTable = NetworkTable.getTable("SmartDashboard");
 	
 		
 	public static void init(){		

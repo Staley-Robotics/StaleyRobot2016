@@ -25,7 +25,7 @@ import org.usfirst.frc.team4959.robot.subsystems.Drive;
  */
 public class Robot extends IterativeRobot {
 
-	CameraServer server;
+//	CameraServer server;
 	
 	public static final Shooter shooter = new Shooter();
 	public static final Arm arm = new Arm();

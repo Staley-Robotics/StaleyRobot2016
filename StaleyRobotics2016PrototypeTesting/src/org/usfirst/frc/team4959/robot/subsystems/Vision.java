@@ -11,22 +11,26 @@ import edu.wpi.first.wpilibj.tables.TableKeyNotDefinedException;
  */
 public class Vision extends Subsystem {
 	
-//	NetworkTable table;
-//	
-//	
+	static NetworkTable table;
+	
+	
 	public Vision() {
-//		table = RobotMap.networkTable;
+		table = RobotMap.networkTable;
+//		table.shutdown();
+		table.setServerMode();
+		table.initialize();
+//		table.setIPAddress("10.49.59.2");
 	}
-//	
-//	public void getBlob() {
-//		try
-//		{
-//			System.out.println(table.getNumber("IMAGE_COUNT", 0.0));
-//		}
-//		catch (TableKeyNotDefinedException ex)
-//		{
-//		}
-//	}
+	
+	public void getBlob() {
+		try
+		{
+			System.out.println(table.getNumber("Center", 0.0));
+		}
+		catch (TableKeyNotDefinedException ex)
+		{
+		}
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
