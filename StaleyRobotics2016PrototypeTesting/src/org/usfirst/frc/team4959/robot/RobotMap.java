@@ -1,10 +1,8 @@
 package org.usfirst.frc.team4959.robot;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -31,6 +29,10 @@ public class RobotMap {
 	public static final int RIGHT_BUMPER = 5;
 	public static final int LEFT_BUMPER = 6;
 	
+	public static final int A_BUTTON = 1;
+	
+	public static final int JOYSTICK_Y = 1;
+	
 	
 	// Ports
 	public static final int FRONT_LEFT_DRIVE_MOTOR_PORT = 1;
@@ -41,9 +43,11 @@ public class RobotMap {
 	public static final int LEFT_SHOOTER_MOTOR_PORT = 5;
 	public static final int RIGHT_SHOOTER_MOTOR_PORT = 6;
 		
-	public static final int ARM_MOTOR_PORT = 0;
+	public static final int ARM_MOTOR_PORT = 7;
 	
 	public static final int FLIPPER_MOTOR_PORT = 8;
+	
+	public static final int SERVO_PORT = 9;
 	
 	public static final int ARM_ENCODER_PORT_ONE = 0;
 	public static final int ARM_ENCODER_PORT_TWO = 1;
@@ -52,7 +56,6 @@ public class RobotMap {
 	
 	public static final int FLIPPER_LIMIT_SWITCH_PORT = 4;
 		
-	public static final int SERVO_PORT = 9;
 
 
 //******************************Objects and Initializations******************************\\
@@ -67,8 +70,6 @@ public class RobotMap {
 //	public static RobotDrive driveTrain = new RobotDrive(flDriveMotor, blDriveMotor);
 	public static RobotDrive driveTrain = new RobotDrive(flDriveMotor, blDriveMotor, frDriveMotor, brDriveMotor);
 	
-	public static Gyro gyro = new AnalogGyro(0); 
-
 		
 	// Shooter
 	public static SpeedController leftShooterMotor = new Talon(LEFT_SHOOTER_MOTOR_PORT);
@@ -84,17 +85,14 @@ public class RobotMap {
 	public static SpeedController armMotor = new Talon(ARM_MOTOR_PORT);
 	
 	
-	// nipper
+	// Flipper
 	public static SpeedController flipperMotor = new Talon(FLIPPER_MOTOR_PORT);
 	public static DigitalInput flipperLimitSwitch = new DigitalInput(FLIPPER_LIMIT_SWITCH_PORT);
 	
 	
-	// Vision
-	public static NetworkTable networkTable = NetworkTable.getTable("SmartDashboard");
-	
 		
 	public static void init(){		
-    	driveTrain.setSafetyEnabled(true);
+    	driveTrain.setSafetyEnabled(false);
     	driveTrain.setExpiration(0.1);
     	driveTrain.setSensitivity(0.5);
     	driveTrain.setMaxOutput(1);

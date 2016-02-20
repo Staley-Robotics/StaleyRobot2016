@@ -1,21 +1,19 @@
 package org.usfirst.frc.team4959.robot;
 
+import org.usfirst.frc.team4959.robot.commands.Arm.ClearAngle;
 import org.usfirst.frc.team4959.robot.commands.Arm.SetArm;
-import org.usfirst.frc.team4959.robot.commands.Auto.TurnRightToAngle;
+import org.usfirst.frc.team4959.robot.commands.Arm.ZeroEncoder;
+import org.usfirst.frc.team4959.robot.commands.Drive.JoystickDrive;
 import org.usfirst.frc.team4959.robot.commands.Flipper.LowerFlipper;
 import org.usfirst.frc.team4959.robot.commands.Flipper.RaiseFlipper;
 import org.usfirst.frc.team4959.robot.commands.Shooter.RunIntake;
-import org.usfirst.frc.team4959.robot.commands.Shooter.RunIntakeButton;
-import org.usfirst.frc.team4959.robot.commands.Shooter.RunShooter;
-import org.usfirst.frc.team4959.robot.commands.Shooter.RunShooterButton;
 import org.usfirst.frc.team4959.robot.commands.Shooter.SetServoSequence;
 import org.usfirst.frc.team4959.robot.commands.Shooter.ShootSequence;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,8 +48,8 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	
 	
-	public Joystick xboxController;
-	public Joystick joystick;
+	public static Joystick xboxController;
+	public static Joystick joystick;
 	
 	public OI(){
 		
@@ -60,35 +58,50 @@ public class OI {
 		
 		// lower flipper button
 		Button lowerFlipper = new JoystickButton(xboxController, RobotMap.LEFT_BUMPER);
-		lowerFlipper.whileHeld(new  LowerFlipper(0.1));
+		lowerFlipper.whileHeld(new  LowerFlipper(0.3));
 		
 		// raise flipper button
 		Button raiseFlipper = new JoystickButton(xboxController, RobotMap.RIGHT_BUMPER);
-		raiseFlipper.whileHeld(new RaiseFlipper(0.1));
+		raiseFlipper.whileHeld(new RaiseFlipper(0.3));
+		
+		// low power button
+		Button lowSpeed = new JoystickButton(xboxController, RobotMap.A_BUTTON);
+		lowSpeed.whileHeld(new JoystickDrive(0.5));
 		
 	// Joystick
 		joystick = new Joystick(RobotMap.JOYSTICK_PORT);
 		
-	// shoot button
+		// shoot button
 		Button shoot = new JoystickButton(joystick, 1);
-//		shoot.whileHeld(new RunShooter());
-//		shoot.whenPressed(new RunShooterButton(3));
 		shoot.whenPressed(new ShootSequence());
 		
-	// Intakes button
+		// Intakes button
 		Button intake = new JoystickButton(joystick, 2);	
 		intake.whileHeld(new RunIntake());
 		
-	// set arm button
-		Button setArm = new JoystickButton(joystick, 3);
-		setArm.whenPressed(new SetArm(90));
+		// reset encoder
+		Button zeroEncoder = new JoystickButton(joystick, 9);
+		zeroEncoder.whenPressed(new ZeroEncoder());
 		
-		Button setArm2 = new JoystickButton(joystick, 4);
-		setArm2.whenPressed(new SetArm(45));
+		// clear arm button
+		Button clearAngle = new JoystickButton(joystick, 8);
+		clearAngle.whenPressed(new ClearAngle());
 		
-		Button setServo = new JoystickButton(joystick, 5);
+		// set arm button
+		Button setArm45 = new JoystickButton(joystick, 6);
+		setArm45.whenPressed(new SetArm(45));
+		
+		Button setArm55 = new JoystickButton(joystick, 7);
+		setArm55.whenPressed(new SetArm(55));
+		
+		Button setArm65 = new JoystickButton(joystick, 10);
+		setArm65.whenPressed(new SetArm(65));
+		
+		Button setArm75 = new JoystickButton(joystick, 11);
+		setArm75.whenPressed(new SetArm(75));
+		
+		Button setServo = new JoystickButton(joystick, 3);
 		setServo.whenPressed(new SetServoSequence());
-
 	}
 	
 	// xbox controller left joystick
@@ -116,6 +129,8 @@ public class OI {
 	}
 	
 	// joystick
-	
+	public double getJoystickY() {
+		return joystick.getRawAxis(RobotMap.JOYSTICK_Y);
+	}
 }
 

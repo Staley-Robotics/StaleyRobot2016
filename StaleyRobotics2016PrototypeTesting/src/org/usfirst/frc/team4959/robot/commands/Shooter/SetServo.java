@@ -14,7 +14,7 @@ public class SetServo extends Command {
     public SetServo(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.arm);
+    	requires(Robot.flipper);
     	
     	this.angle = angle;
     }
@@ -25,7 +25,7 @@ public class SetServo extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.setServo(angle);
+    	Robot.flipper.setServo(angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()

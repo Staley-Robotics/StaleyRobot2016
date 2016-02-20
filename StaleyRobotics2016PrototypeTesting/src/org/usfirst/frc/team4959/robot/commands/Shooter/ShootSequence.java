@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class ShootSequence extends CommandGroup {
 	
-	private static final double RUN_SHOOTER_TIME = 5;
-	private static final double DELAY_TIME = 2;
+	private static final double RUN_SHOOTER_TIME = 4;
+	private static final double DELAY_TIME = 1.5;
     
     public  ShootSequence() {
     	addParallel(new RunShooterButton(RUN_SHOOTER_TIME));

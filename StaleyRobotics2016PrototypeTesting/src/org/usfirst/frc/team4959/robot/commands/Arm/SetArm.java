@@ -17,6 +17,7 @@ public class SetArm extends Command {
     public SetArm(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+//    	setInterruptible(false);
     	requires(Robot.arm);
     	this.angle = angle;
     }

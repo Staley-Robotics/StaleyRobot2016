@@ -9,9 +9,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4959.robot.subsystems.Shooter;
 import org.usfirst.frc.team4959.robot.subsystems.Vision;
+import org.usfirst.frc.team4959.robot.commands.Auto.AutoLowBar;
+import org.usfirst.frc.team4959.robot.commands.Auto.TouchDefense;
 import org.usfirst.frc.team4959.robot.commands.Shooter.RunShooterButton;
 import org.usfirst.frc.team4959.robot.subsystems.Arm;
 import org.usfirst.frc.team4959.robot.subsystems.BackFlipper;
@@ -22,6 +26,8 @@ import org.usfirst.frc.team4959.robot.subsystems.Drive;
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
  * directory.
+ * 
+ * Connor is wrong.
  */
 public class Robot extends IterativeRobot {
 
@@ -31,8 +37,10 @@ public class Robot extends IterativeRobot {
 	public static final Arm arm = new Arm();
 	public static final BackFlipper flipper = new BackFlipper();
 	public static final Vision vision = new Vision();
-	public static Drive drive = new Drive();
+	public static final Drive drive = new Drive();
 	public static OI oi;
+	
+	static SendableChooser autonomousModes;
 
     Command autonomousCommand;
 
@@ -49,10 +57,16 @@ public class Robot extends IterativeRobot {
     	
 
     	// instantiate the command used for the autonomous period
-        autonomousCommand = new RunShooterButton(5);
+        autonomousCommand = new AutoLowBar();
         //This is where I decide between different Autos
 		oi = new OI();
 		
+		autonomousModes = new SendableChooser();
+		
+	    autonomousModes.addDefault("Touch Defense", new TouchDefense());
+	    autonomousModes.addObject("Low bar", new AutoLowBar());
+	    
+	    SmartDashboard.putData("Autonomous Modes", autonomousModes);
     }
 	
 	public void disabledPeriodic() {
@@ -61,6 +75,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+    	autonomousCommand = (Command) autonomousModes.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -83,6 +98,7 @@ public class Robot extends IterativeRobot {
      * This function is called when the disabled button is hit.
      * You can use it to reset subsystems before shutting down.
      */
+   
     public void disabledInit(){
 
     }

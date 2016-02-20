@@ -8,9 +8,13 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class JoystickDrive extends Command {
+	
+	private double speedModifier = 1;
 
-    public JoystickDrive() {
+    public JoystickDrive(double speedModifier) {
         requires(Robot.drive);
+        
+        this.speedModifier = speedModifier;
     }
 
     // Called just before this Command runs the first time
@@ -18,11 +22,9 @@ public class JoystickDrive extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-//    	Robot.drive.yoloDrive(Robot.oi.getLeftStickY(), Robot.oi.getRightStickY());
-        	
-    	Robot.drive.worldOfTanksDrive(Robot.oi.getRightTrigger(), Robot.oi.getLeftTrigger(), Robot.oi.getLeftStickX());
-       
+    protected void execute() {        	
+    	Robot.drive.worldOfTanksDrive(Robot.oi.getRightTrigger() * speedModifier, Robot.oi.getLeftTrigger() * speedModifier, Robot.oi.getLeftStickX() * speedModifier);
+//    	Robot.drive.tankDrive(Robot.oi.getLeftStickY(), Robot.oi.getRightStickY());
     }
 
     // Make this return true when this Command no longer needs to run execute()

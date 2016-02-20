@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RunIntake extends Command {
 	
-	private final double SPEED = -1;
+	private final double SPEED = -0.5;
 
     DigitalInput limitSwitch = RobotMap.shooterLimitSwitch;
 	

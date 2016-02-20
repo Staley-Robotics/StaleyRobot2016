@@ -17,24 +17,24 @@ import org.usfirst.frc.team4959.robot.commands.Drive.JoystickDrive;
 public class Drive extends Subsystem {
 
     RobotDrive drive = RobotMap.driveTrain;
-    Gyro gyro = RobotMap.gyro;
     double angle;
     
+    SpeedController fl = RobotMap.flDriveMotor;
+    SpeedController bl = RobotMap.blDriveMotor;
+    SpeedController fr = RobotMap.frDriveMotor;
+    SpeedController br = RobotMap.brDriveMotor;
+    
+    
     public Drive() {
-    	gyro.calibrate();
     }
     
     public void initDefaultCommand() {
-        setDefaultCommand(new JoystickDrive());
-    }
-    
-    public void yoloDrive(double left, double right) {
-    	drive.tankDrive(-left, -right);
+        setDefaultCommand(new JoystickDrive(1));
     }
     
     public void worldOfTanksDrive(double forward, double backward, double rotate) {
-    	double speedModifier = 0.8;
-    	double turnSpeedModifier = 0.5;
+    	double speedModifier = 1;
+    	double turnSpeedModifier = 1;
     	
     	if(backward * speedModifier > 0) {
     		drive.arcadeDrive(-backward * speedModifier, rotate * turnSpeedModifier);
@@ -45,23 +45,28 @@ public class Drive extends Subsystem {
     	}
     }
     
+    public void tankDrive(double left, double right) {
+    	drive.tankDrive(left, right);
+    }
+    
+    public void testDrive(double left, double right) {
+    	fl.set(left * 1);
+    	bl.set(left * 0.9);
+    	
+    	fr.set(right);
+    	br.set(right * 0.98);
+    }
+    
     public void stopDrive(){
     	drive.drive(0, 0);
     }
     
-    public double getGyroAngle() {
-    	double angle = gyro.getAngle() * 100;
-    	System.out.println(angle);
-    	return Math.abs(angle);
+    public void turn(double turn) {
+    	drive.tankDrive(turn, -turn);
     }
     
-    public void resetGyro() {
-    	gyro.reset();
-    }
-    
-    public void turnRightAngle(double angle) {
-    	double rotationSpeed = 0.6;
-    	drive.arcadeDrive(0, rotationSpeed);
+    public void driveStraight(double move) {
+    	drive.tankDrive(move, move);
     }
 }
 
