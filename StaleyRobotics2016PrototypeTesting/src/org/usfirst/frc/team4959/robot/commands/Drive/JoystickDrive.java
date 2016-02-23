@@ -25,6 +25,8 @@ public class JoystickDrive extends Command {
     protected void execute() {        	
     	Robot.drive.worldOfTanksDrive(Robot.oi.getRightTrigger() * speedModifier, Robot.oi.getLeftTrigger() * speedModifier, Robot.oi.getLeftStickX() * speedModifier);
 //    	Robot.drive.tankDrive(Robot.oi.getLeftStickY(), Robot.oi.getRightStickY());
+    	
+    	Robot.vision.findDistance();
     }
 
     // Make this return true when this Command no longer needs to run execute()

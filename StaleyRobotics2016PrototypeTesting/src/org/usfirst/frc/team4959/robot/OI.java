@@ -1,7 +1,9 @@
 package org.usfirst.frc.team4959.robot;
 
+import org.usfirst.frc.team4959.robot.commands.Arm.AutoSetArm;
 import org.usfirst.frc.team4959.robot.commands.Arm.ClearAngle;
 import org.usfirst.frc.team4959.robot.commands.Arm.SetArm;
+import org.usfirst.frc.team4959.robot.commands.Arm.StopVision;
 import org.usfirst.frc.team4959.robot.commands.Arm.ZeroEncoder;
 import org.usfirst.frc.team4959.robot.commands.Drive.JoystickDrive;
 import org.usfirst.frc.team4959.robot.commands.Flipper.LowerFlipper;
@@ -66,7 +68,7 @@ public class OI {
 		
 		// low power button
 		Button lowSpeed = new JoystickButton(xboxController, RobotMap.A_BUTTON);
-		lowSpeed.whileHeld(new JoystickDrive(0.5));
+		lowSpeed.whileHeld(new JoystickDrive(0.7));
 		
 	// Joystick
 		joystick = new Joystick(RobotMap.JOYSTICK_PORT);
@@ -76,12 +78,15 @@ public class OI {
 		shoot.whenPressed(new ShootSequence());
 		
 		// Intakes button
-		Button intake = new JoystickButton(joystick, 2);	
+		Button intake = new JoystickButton(joystick, 2);
 		intake.whileHeld(new RunIntake());
 		
 		// reset encoder
-		Button zeroEncoder = new JoystickButton(joystick, 9);
-		zeroEncoder.whenPressed(new ZeroEncoder());
+//		Button zeroEncoder = new JoystickButton(joystick, 9);
+//		zeroEncoder.whenPressed(new ZeroEncoder());
+		
+		Button setArm = new JoystickButton(joystick, 9);
+		setArm.whenPressed(new AutoSetArm());
 		
 		// clear arm button
 		Button clearAngle = new JoystickButton(joystick, 8);
@@ -91,17 +96,21 @@ public class OI {
 		Button setArm45 = new JoystickButton(joystick, 6);
 		setArm45.whenPressed(new SetArm(45));
 		
+		// The good angle
 		Button setArm55 = new JoystickButton(joystick, 7);
-		setArm55.whenPressed(new SetArm(55));
+		setArm55.whenPressed(new SetArm(68));
 		
-		Button setArm65 = new JoystickButton(joystick, 10);
-		setArm65.whenPressed(new SetArm(65));
+		Button setArm70 = new JoystickButton(joystick, 10);
+		setArm70.whenPressed(new SetArm(68.5));
 		
 		Button setArm75 = new JoystickButton(joystick, 11);
-		setArm75.whenPressed(new SetArm(75));
+		setArm75.whenPressed(new SetArm(69));
 		
 		Button setServo = new JoystickButton(joystick, 3);
 		setServo.whenPressed(new SetServoSequence());
+		
+		Button stopVision = new JoystickButton(joystick, 4);
+		stopVision.whenPressed(new StopVision());
 	}
 	
 	// xbox controller left joystick

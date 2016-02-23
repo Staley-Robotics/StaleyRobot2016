@@ -51,15 +51,13 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	RobotMap.init();
     	
+    	arm.resetEncoder();
+    	
 //    	server = CameraServer.getInstance();
 //    	server.setQuality(50);
 //    	server.startAutomaticCapture("cam0");
     	
-
-    	// instantiate the command used for the autonomous period
-        autonomousCommand = new AutoLowBar();
-        //This is where I decide between different Autos
-		oi = new OI();
+  		oi = new OI();
 		
 		autonomousModes = new SendableChooser();
 		

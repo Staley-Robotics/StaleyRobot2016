@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  *
@@ -31,7 +32,7 @@ public class Arm extends Subsystem {
     }
     
     public void goToAngle(double desiredAngle, double power) {
-    	double buffer = 2;
+    	double buffer = 0.5;
     	
     	System.out.println("Angle: " + getArmPos());
     	
@@ -40,13 +41,13 @@ public class Arm extends Subsystem {
     	if((angle > desiredAngle - buffer) && (angle < desiredAngle + buffer)){
     		runArm(-0.1);
 //    		runArm(0);
-    		System.out.println("Not going");
+    		System.out.println("Not going angle");
     	} else if(angle > desiredAngle - buffer) {
     		runArm(power);
-    		System.out.println("going down");
+    		System.out.println("going down angle");
     	} else if(angle < desiredAngle + buffer) {
     		runArm(-power);
-    		System.out.println("going up");
+    		System.out.println("going up angle");
     	}
     }
     
@@ -66,8 +67,5 @@ public class Arm extends Subsystem {
     public void runArm(double power) {
     	motor.set(power);
     }
-    
-
-
 }
 

@@ -24,7 +24,6 @@ public class Drive extends Subsystem {
     SpeedController fr = RobotMap.frDriveMotor;
     SpeedController br = RobotMap.brDriveMotor;
     
-    
     public Drive() {
     }
     
@@ -33,6 +32,19 @@ public class Drive extends Subsystem {
     }
     
     public void worldOfTanksDrive(double forward, double backward, double rotate) {
+    	double speedModifier = 1;
+    	double turnSpeedModifier = 1;
+    	
+    	if(backward * speedModifier > 0) {
+    		drive.arcadeDrive(-backward * speedModifier, rotate * turnSpeedModifier);
+    	} else if (forward > 0) {
+    		drive.arcadeDrive(forward * speedModifier, -rotate * turnSpeedModifier);
+    	} else {
+    		drive.arcadeDrive(0, -rotate * turnSpeedModifier);
+    	}
+    }
+    
+    public void testDrive(double forward, double backward, double rotate) {
     	double speedModifier = 1;
     	double turnSpeedModifier = 1;
     	

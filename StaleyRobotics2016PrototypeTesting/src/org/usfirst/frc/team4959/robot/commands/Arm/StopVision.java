@@ -1,25 +1,17 @@
 package org.usfirst.frc.team4959.robot.commands.Arm;
 
 import org.usfirst.frc.team4959.robot.Robot;
-import org.usfirst.frc.team4959.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class SetArm extends Command {
-		
-	private double motorPower = 0.4;
-	private double angle;
-	
-    public SetArm(double angle) {
+public class StopVision extends Command {
+
+    public StopVision() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-//    	setInterruptible(false);
-    	requires(Robot.arm);
-    	this.angle = angle;
     }
 
     // Called just before this Command runs the first time
@@ -28,25 +20,20 @@ public class SetArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.goToAngle(angle, motorPower);
+    	Robot.shooter.setTest(true);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.shooter.checkForShooting();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	System.out.println("end");
-    	Robot.shooter.setShooting(false);
-    	Robot.arm.runArm(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	System.out.println("is interupted");
-    	Robot.arm.runArm(0);
     }
 }

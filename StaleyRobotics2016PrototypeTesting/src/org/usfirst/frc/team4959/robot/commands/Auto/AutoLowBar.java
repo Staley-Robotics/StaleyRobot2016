@@ -16,9 +16,9 @@ public class AutoLowBar extends CommandGroup {
     	addSequential(new DriveFoward(.7, 2));
     	addSequential(new DriveFoward(.5, 3));
     	// turn for (speed, time)
-    	addSequential(new Turn(.5, .5));
+//    	addSequential(new Turn(.5, .5));
     	// set arm to (angle)
-    	addSequential(new SetArm(60));
-    	addSequential(new ShootSequence());
+//    	addSequential(new SetArm(60));
+//    	addSequential(new ShootSequence());
     }
 }
