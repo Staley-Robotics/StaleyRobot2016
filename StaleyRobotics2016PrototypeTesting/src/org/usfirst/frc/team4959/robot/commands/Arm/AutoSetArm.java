@@ -25,8 +25,8 @@ public class AutoSetArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double buffer = 10;
-//    	boolean cheack = false;
+    	double buffer = 30;
+//    	boolean check = false;
 //    	displacement = NetworkTable.getTable("SmartDashboard").getNumber("displacement", 0.0);
     	center = NetworkTable.getTable("SmartDashboard").getNumber("Center", 0.0);
     	blob = NetworkTable.getTable("SmartDashboard").getNumber("Blob", 0.0);
@@ -38,20 +38,23 @@ public class AutoSetArm extends Command {
 //    	System.out.println("Center: " + center);
 //    	System.out.println("Diff" + (blob - center));
     	
-    	if (displacement < buffer && displacement > -buffer ) {
-    		Robot.arm.goToAngle(angle, 0.0);
-//    		cheack = true;
+    	while (displacement > buffer && displacement < -buffer) {
+    		if (displacement < buffer && displacement > -buffer) {
+    			Robot.arm.goToAngle(angle, 0.0);
+//    			Check = true;
+    		}
+    		else if (displacement > buffer) {
+    			angle += 1;
+    			Robot.arm.goToAngle(angle, .3);
+    			System.out.println("Going up displacement");
+    		}
+    		else if (displacement < -buffer) {
+    			angle -= 1;
+    			Robot.arm.goToAngle(angle, .1);
+    			System.out.println("Going down displacement");
+    		}
     	}
-    	else if (displacement > buffer) {
-    		angle += 1;
-    		Robot.arm.goToAngle(angle, .3);
-    		System.out.println("Going up displacement");
-    	}
-    	else if (displacement < -buffer) {
-    		angle -= 1;
-    		Robot.arm.goToAngle(angle, .1);
-    		System.out.println("Going down displacement");
-    	}
+    	Robot.arm.goToAngle(angle, 0.0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

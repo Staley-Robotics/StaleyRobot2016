@@ -25,8 +25,11 @@ public class JoystickDrive extends Command {
     protected void execute() {        	
     	Robot.drive.worldOfTanksDrive(Robot.oi.getRightTrigger() * speedModifier, Robot.oi.getLeftTrigger() * speedModifier, Robot.oi.getLeftStickX() * speedModifier);
 //    	Robot.drive.tankDrive(Robot.oi.getLeftStickY(), Robot.oi.getRightStickY());
+//    	Robot.drive.testDrive(Robot.oi.getRightTrigger() * speedModifier, Robot.oi.getLeftTrigger() * speedModifier, Robot.oi.getLeftStickX() * speedModifier);
     	
-    	Robot.vision.findDistance();
+    	Robot.arm.printAngle();
+    	
+//    	Robot.vision.findDistance();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,12 +39,10 @@ public class JoystickDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drive.stopDrive();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.drive.stopDrive();
     }
 }

@@ -67,7 +67,6 @@ public class RobotMap {
 	public static SpeedController frDriveMotor = new Talon(FRONT_RIGHT_DRIVE_MOTOR_PORT);
 	public static SpeedController brDriveMotor = new Talon(BACK_RIGHT_DRIVE_MOTOR_PORT);
 		
-//	public static RobotDrive driveTrain = new RobotDrive(flDriveMotor, blDriveMotor);
 	public static RobotDrive driveTrain = new RobotDrive(flDriveMotor, blDriveMotor, frDriveMotor, brDriveMotor);
 	
 		
@@ -96,7 +95,7 @@ public class RobotMap {
     	driveTrain.setExpiration(0.1);
     	driveTrain.setSensitivity(0.5);
     	driveTrain.setMaxOutput(1);
-    	
+   
 
     	LiveWindow.addActuator("Arm", "arm motor", (LiveWindowSendable) armMotor);
     	LiveWindow.addSensor("Arm", "arm encoder", armEncoder);

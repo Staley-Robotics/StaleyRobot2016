@@ -67,5 +67,9 @@ public class Arm extends Subsystem {
     public void runArm(double power) {
     	motor.set(power);
     }
+    
+    public void printAngle() {
+    	System.out.println(getArmPos());
+    }
 }
 

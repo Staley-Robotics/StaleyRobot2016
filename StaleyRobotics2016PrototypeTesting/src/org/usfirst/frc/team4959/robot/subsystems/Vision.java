@@ -16,16 +16,15 @@ import edu.wpi.first.wpilibj.tables.TableKeyNotDefinedException;
  */
 public class Vision extends Subsystem {
 	
-	double goadDiagonalPx;
+	double goadDiagonalPx = 0;
 	double goalDiagonal = 18.44;
 	double goalWidth = 14;
 	double goalHight =12;
 	double goalWidthPx = 0;
 	double f = 360;//1491.43;
+	double distance = 0;
 	
 	public double findDistance() {
-		double distance = 0;
-		
 		// Gets value from RR
 		goadDiagonalPx = NetworkTable.getTable("SmartDashboard").getNumber("distance", 0.0);
 		
@@ -33,8 +32,8 @@ public class Vision extends Subsystem {
 		goalWidthPx = (goadDiagonalPx * (goalDiagonal/goalWidth));
 		distance = ((goalWidth*f)/goalWidthPx);
 		
-//		System.out.println("Distance: " + distance);
-//		
+		System.out.println("Px Size: " + goalWidthPx);
+		
 		return distance;
 	}
 

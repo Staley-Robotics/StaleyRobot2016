@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class ShootSequence extends CommandGroup {
 	
-	private static final double RUN_SHOOTER_TIME = 3;
+	private static final double RUN_SHOOTER_TIME = 2.5;
 	private static final double DELAY_TIME = 1;
     
     public  ShootSequence() {

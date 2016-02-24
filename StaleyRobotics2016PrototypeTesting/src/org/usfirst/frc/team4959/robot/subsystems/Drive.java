@@ -17,12 +17,10 @@ import org.usfirst.frc.team4959.robot.commands.Drive.JoystickDrive;
 public class Drive extends Subsystem {
 
     RobotDrive drive = RobotMap.driveTrain;
+//	RobotDrive fDrive = RobotMap.frontDrive;
+//	RobotDrive bDrive = RobotMap.backDrive;
+	
     double angle;
-    
-    SpeedController fl = RobotMap.flDriveMotor;
-    SpeedController bl = RobotMap.blDriveMotor;
-    SpeedController fr = RobotMap.frDriveMotor;
-    SpeedController br = RobotMap.brDriveMotor;
     
     public Drive() {
     }
@@ -44,29 +42,8 @@ public class Drive extends Subsystem {
     	}
     }
     
-    public void testDrive(double forward, double backward, double rotate) {
-    	double speedModifier = 1;
-    	double turnSpeedModifier = 1;
-    	
-    	if(backward * speedModifier > 0) {
-    		drive.arcadeDrive(-backward * speedModifier, rotate * turnSpeedModifier);
-    	} else if (forward > 0) {
-    		drive.arcadeDrive(forward * speedModifier, -rotate * turnSpeedModifier);
-    	} else {
-    		drive.arcadeDrive(0, -rotate * turnSpeedModifier);
-    	}
-    }
-    
     public void tankDrive(double left, double right) {
     	drive.tankDrive(left, right);
-    }
-    
-    public void testDrive(double left, double right) {
-    	fl.set(left * 1);
-    	bl.set(left * 0.9);
-    	
-    	fr.set(right);
-    	br.set(right * 0.98);
     }
     
     public void stopDrive(){

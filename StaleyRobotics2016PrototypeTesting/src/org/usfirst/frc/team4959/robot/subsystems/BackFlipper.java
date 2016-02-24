@@ -23,15 +23,19 @@ public class BackFlipper extends Subsystem {
     }
     
     public void raiseFlippers(double speed) {
-    	motor.set(speed);
-    }
-    
-    public void lowerFlippers(double speed) {
     	motor.set(-speed);
     }
     
-    public void setServo(double angle) {
-    	servo.set(angle);
+    public void lowerFlippers(double speed) {
+    	motor.set(speed);
     }
+    
+    public void setServo(double angle) {
+    	servo.setAngle(angle);
+    }
+    
+//    public void endServo() {
+//    	servo.
+//    }
 }
 
