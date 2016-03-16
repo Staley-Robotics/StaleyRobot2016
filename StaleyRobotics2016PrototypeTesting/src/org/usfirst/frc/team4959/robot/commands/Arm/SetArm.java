@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class SetArm extends Command {
 		
-	private double motorPower = 0.4;
+	private double motorPower = 0.6;
 	private double angle;
 	
     public SetArm(double angle) {

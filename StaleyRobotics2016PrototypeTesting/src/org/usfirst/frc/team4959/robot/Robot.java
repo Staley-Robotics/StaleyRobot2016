@@ -1,22 +1,20 @@
 
 package org.usfirst.frc.team4959.robot;
 import edu.wpi.first.wpilibj.CameraServer;
-import com.ni.vision.NIVision;
-import com.ni.vision.NIVision.Image;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4959.robot.subsystems.Shooter;
 import org.usfirst.frc.team4959.robot.subsystems.Vision;
+import org.usfirst.frc.team4959.robot.commands.AutoWheelMoat;
 import org.usfirst.frc.team4959.robot.commands.Auto.AutoLowBar;
-import org.usfirst.frc.team4959.robot.commands.Auto.TouchDefense;
-import org.usfirst.frc.team4959.robot.commands.Shooter.RunShooterButton;
+import org.usfirst.frc.team4959.robot.commands.Auto.AutoMoat;
+import org.usfirst.frc.team4959.robot.commands.Auto.AutoRoughTerrain;
 import org.usfirst.frc.team4959.robot.subsystems.Arm;
 import org.usfirst.frc.team4959.robot.subsystems.BackFlipper;
 import org.usfirst.frc.team4959.robot.subsystems.Drive;
@@ -31,7 +29,7 @@ import org.usfirst.frc.team4959.robot.subsystems.Drive;
  */
 public class Robot extends IterativeRobot {
 
-//	CameraServer server;
+	CameraServer server;
 	
 	public static final Shooter shooter = new Shooter();
 	public static final Arm arm = new Arm();
@@ -53,18 +51,26 @@ public class Robot extends IterativeRobot {
     	
     	arm.resetEncoder();
     	
-//    	server = CameraServer.getInstance();
-//    	server.setQuality(50);
-//    	server.startAutomaticCapture("cam0");
+    	server = CameraServer.getInstance();
+    	server.setQuality(50);
+    	server.startAutomaticCapture("cam0");
     	
-  		oi = new OI();
-		
-		autonomousModes = new SendableChooser();
-		
-	    autonomousModes.addDefault("Touch Defense", new TouchDefense());
-	    autonomousModes.addObject("Low bar", new AutoLowBar());
-	    
-	    SmartDashboard.putData("Autonomous Modes", autonomousModes);
+        // OI must be constructed after subsystems. If the OI creates Commands 
+        //(which it very likely will), subsystems are not guaranteed to be 
+        // constructed yet. Thus, their requires() statements may grab null 
+        // pointers. Bad news. Don't move it.
+        oi = new OI();
+
+        // instantiate the command used for the autonomous period
+        
+        autonomousModes = new SendableChooser();
+        autonomousModes.addDefault("Low Bar", new AutoLowBar());
+        autonomousModes.addObject("Moat/ Rock Wall", new AutoMoat());
+        autonomousModes.addObject("Rough Terrain", new AutoRoughTerrain());
+        autonomousModes.addObject("Wheel Low Bar", new AutoWheelMoat());
+
+//        autonomousModes.addObject("Touch Defense", new TouchDefense());
+        SmartDashboard.putData("Autonomous Modes", autonomousModes);
     }
 	
 	public void disabledPeriodic() {
@@ -74,6 +80,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
     	autonomousCommand = (Command) autonomousModes.getSelected();
+//    	autonomousCommand = new AutoLowBar();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 

@@ -1,15 +1,12 @@
 package org.usfirst.frc.team4959.robot;
 
-import org.usfirst.frc.team4959.robot.commands.Arm.AutoSetArm;
 import org.usfirst.frc.team4959.robot.commands.Arm.ClearAngle;
 import org.usfirst.frc.team4959.robot.commands.Arm.SetArm;
-import org.usfirst.frc.team4959.robot.commands.Arm.StopVision;
 import org.usfirst.frc.team4959.robot.commands.Arm.ZeroEncoder;
 import org.usfirst.frc.team4959.robot.commands.Drive.JoystickDrive;
 import org.usfirst.frc.team4959.robot.commands.Flipper.LowerFlipper;
 import org.usfirst.frc.team4959.robot.commands.Flipper.RaiseFlipper;
 import org.usfirst.frc.team4959.robot.commands.Shooter.RunIntake;
-import org.usfirst.frc.team4959.robot.commands.Shooter.SetServoSequence;
 import org.usfirst.frc.team4959.robot.commands.Shooter.ShootSequence;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -60,11 +57,11 @@ public class OI {
 		
 		// lower flipper button
 		Button lowerFlipper = new JoystickButton(xboxController, RobotMap.LEFT_BUMPER);
-		lowerFlipper.whileHeld(new  LowerFlipper(0.3));
+		lowerFlipper.whileHeld(new  LowerFlipper(0.6));
 		
 		// raise flipper button
 		Button raiseFlipper = new JoystickButton(xboxController, RobotMap.RIGHT_BUMPER);
-		raiseFlipper.whileHeld(new RaiseFlipper(0.3));
+		raiseFlipper.whileHeld(new RaiseFlipper(0.6));
 		
 		// low power button
 		Button lowSpeed = new JoystickButton(xboxController, RobotMap.A_BUTTON);
@@ -87,24 +84,38 @@ public class OI {
 		Button clearAngle = new JoystickButton(joystick, 3);
 		clearAngle.whenPressed(new ClearAngle());
 		
-		// reset encoder
-		Button zeroEncoder = new JoystickButton(joystick, 4);
+		// reset encoder button
+		Button zeroEncoder = new JoystickButton(joystick, 5);
 		zeroEncoder.whenPressed(new ZeroEncoder());
 		
+//		// decrement angle button
+//		Button decrementAngle = new JoystickButton(joystick, 4);
+//		decrementAngle.whenPressed(new ChangeAngle(-1, 5));
+//		
+//		// increment angle button
+//		Button incrementAngle = new JoystickButton(joystick, 6);
+//		incrementAngle.whenPressed(new ChangeAngle(1, 5));
+		
 		// set arm buttons
-		Button setArm45 = new JoystickButton(joystick, 9);
-		setArm45.whenPressed(new SetArm(60));
+		Button setArm30 = new JoystickButton(joystick, 7);
+		setArm30.whenPressed(new SetArm(30));
+		
+		Button setArm45 = new JoystickButton(joystick, 8);
+		setArm45.whenPressed(new SetArm(45));
+
+		Button setArm60 = new JoystickButton(joystick, 9);
+		setArm60.whenPressed(new SetArm(60));
 	
-		Button setArm55 = new JoystickButton(joystick, 10);
-		setArm55.whenPressed(new SetArm(65));
+		Button setArm65 = new JoystickButton(joystick, 10);
+		setArm65.whenPressed(new SetArm(65));
 		
 		Button setArm70 = new JoystickButton(joystick, 11);
 		setArm70.whenPressed(new SetArm(70));
 		
-		Button setArm75 = new JoystickButton(joystick, 12);
-		setArm75.whenPressed(new SetArm(82));
+		Button setArm79 = new JoystickButton(joystick, 12);
+		setArm79.whenPressed(new SetArm(81));
 		
-//		Button setServo = new JoystickButton(joystick, 3);
+//		Button setServo = new JoystickButton(joystick, 4);
 //		setServo.whenPressed(new SetServoSequence());
 //		
 //		Button setArmLow = new JoystickButton(joystick, 4);

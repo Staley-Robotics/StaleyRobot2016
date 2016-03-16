@@ -58,7 +58,7 @@ public class RobotMap {
 		
 
 
-//******************************Objects and Initializations******************************\\
+//******************************Declarations and Initializations******************************\\
 		
 		
 	// Drivetrain
@@ -99,6 +99,5 @@ public class RobotMap {
 
     	LiveWindow.addActuator("Arm", "arm motor", (LiveWindowSendable) armMotor);
     	LiveWindow.addSensor("Arm", "arm encoder", armEncoder);
-    	
  	}
 }

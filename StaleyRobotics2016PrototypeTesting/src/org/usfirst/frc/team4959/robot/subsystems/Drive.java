@@ -55,7 +55,7 @@ public class Drive extends Subsystem {
     }
     
     public void driveStraight(double move) {
-    	drive.tankDrive(move, move);
+    	drive.tankDrive(move * 0.9, move);
     }
 }
 

@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class TouchDefense extends CommandGroup {
+public class AutoMoat extends CommandGroup {
     
-    public  TouchDefense() {
+    public  AutoMoat() {
     	// drive forward for (speed, time)
     	addParallel(new ZeroEncoder());
-    	addSequential(new DriveFoward(-.7, 1));
+    	addSequential(new DriveFoward(0.8, 5.3));
     }
 }

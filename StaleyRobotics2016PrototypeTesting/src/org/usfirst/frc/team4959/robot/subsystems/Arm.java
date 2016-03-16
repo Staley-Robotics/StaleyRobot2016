@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -34,7 +35,8 @@ public class Arm extends Subsystem {
     public void goToAngle(double desiredAngle, double power) {
     	double buffer = 0.5;
     	
-    	System.out.println("Angle: " + getArmPos());
+//    	System.out.println("Angle: " + getArmPos());
+    	SmartDashboard.putNumber("Arm Angle", getArmPos());
     	
     	double angle = Math.abs(getArmPos());
 
@@ -43,7 +45,7 @@ public class Arm extends Subsystem {
 //    		runArm(0);
     		System.out.println("Not going angle");
     	} else if(angle > desiredAngle - buffer) {
-    		runArm(power);
+    		runArm(power / 2);
     		System.out.println("going down angle");
     	} else if(angle < desiredAngle + buffer) {
     		runArm(-power);
