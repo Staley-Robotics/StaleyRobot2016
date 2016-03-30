@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4959.robot.subsystems.Shooter;
 import org.usfirst.frc.team4959.robot.subsystems.Vision;
-import org.usfirst.frc.team4959.robot.commands.AutoWheelMoat;
 import org.usfirst.frc.team4959.robot.commands.Auto.AutoLowBar;
 import org.usfirst.frc.team4959.robot.commands.Auto.AutoMoat;
 import org.usfirst.frc.team4959.robot.commands.Auto.AutoRoughTerrain;
+import org.usfirst.frc.team4959.robot.commands.Auto.AutoWheelMoat;
 import org.usfirst.frc.team4959.robot.subsystems.Arm;
 import org.usfirst.frc.team4959.robot.subsystems.BackFlipper;
 import org.usfirst.frc.team4959.robot.subsystems.Drive;

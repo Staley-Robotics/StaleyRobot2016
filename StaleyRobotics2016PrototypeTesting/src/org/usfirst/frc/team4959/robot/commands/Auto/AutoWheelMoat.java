@@ -1,7 +1,6 @@
-package org.usfirst.frc.team4959.robot.commands;
+package org.usfirst.frc.team4959.robot.commands.Auto;
 
 import org.usfirst.frc.team4959.robot.commands.Arm.ZeroEncoder;
-import org.usfirst.frc.team4959.robot.commands.Auto.DriveFoward;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

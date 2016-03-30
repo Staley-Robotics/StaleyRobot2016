@@ -3,6 +3,7 @@ package org.usfirst.frc.team4959.robot.commands.Drive;
 import org.usfirst.frc.team4959.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  *
@@ -23,13 +24,11 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {        	
-    	Robot.drive.worldOfTanksDrive(Robot.oi.getRightTrigger() * speedModifier, Robot.oi.getLeftTrigger() * speedModifier, Robot.oi.getLeftStickX() * speedModifier);
+    	Robot.drive.worldOfTanksDrive(Robot.oi.getRightTrigger() * speedModifier, 
+    			Robot.oi.getLeftTrigger() * speedModifier, 
+    			Robot.oi.getLeftStickX() * speedModifier);
 //    	Robot.drive.tankDrive(Robot.oi.getLeftStickY(), Robot.oi.getRightStickY());
 //    	Robot.drive.testDrive(Robot.oi.getRightTrigger() * speedModifier, Robot.oi.getLeftTrigger() * speedModifier, Robot.oi.getLeftStickX() * speedModifier);
-    	
-    	Robot.arm.printAngle();
-    	
-//    	Robot.vision.findDistance();
     }
 
     // Make this return true when this Command no longer needs to run execute()

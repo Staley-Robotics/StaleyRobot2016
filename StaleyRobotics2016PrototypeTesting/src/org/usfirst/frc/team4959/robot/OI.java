@@ -8,6 +8,8 @@ import org.usfirst.frc.team4959.robot.commands.Flipper.LowerFlipper;
 import org.usfirst.frc.team4959.robot.commands.Flipper.RaiseFlipper;
 import org.usfirst.frc.team4959.robot.commands.Shooter.RunIntake;
 import org.usfirst.frc.team4959.robot.commands.Shooter.ShootSequence;
+import org.usfirst.frc.team4959.robot.commands.Vision.AutoLineUp;
+import org.usfirst.frc.team4959.robot.commands.Vision.AutoSetArm;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -88,13 +90,13 @@ public class OI {
 		Button zeroEncoder = new JoystickButton(joystick, 5);
 		zeroEncoder.whenPressed(new ZeroEncoder());
 		
-//		// decrement angle button
-//		Button decrementAngle = new JoystickButton(joystick, 4);
-//		decrementAngle.whenPressed(new ChangeAngle(-1, 5));
-//		
-//		// increment angle button
-//		Button incrementAngle = new JoystickButton(joystick, 6);
-//		incrementAngle.whenPressed(new ChangeAngle(1, 5));
+		// auto aim
+		Button autoAim = new JoystickButton(joystick, 4);
+		autoAim.whenPressed(new AutoSetArm());
+		
+		// auto line up
+		Button autoLineUp = new JoystickButton(joystick, 6);
+		autoLineUp.whenPressed(new AutoLineUp());
 		
 		// set arm buttons
 		Button setArm30 = new JoystickButton(joystick, 7);

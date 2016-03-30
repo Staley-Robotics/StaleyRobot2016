@@ -33,6 +33,7 @@ public class Arm extends Subsystem {
     }
     
     public void goToAngle(double desiredAngle, double power) {
+    	// Check to see if smaller buffers work
     	double buffer = 0.5;
     	
 //    	System.out.println("Angle: " + getArmPos());
