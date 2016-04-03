@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoWheelMoat extends CommandGroup {
+public class AutoWheelLowBar extends CommandGroup {
     
-    public  AutoWheelMoat() {
+    public  AutoWheelLowBar() {
     	addParallel(new ZeroEncoder());
     	addSequential(new DriveFoward(0.6, 2.7));
     }

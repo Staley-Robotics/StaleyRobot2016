@@ -4,6 +4,7 @@ import org.usfirst.frc.team4959.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -29,6 +30,10 @@ public class JoystickDrive extends Command {
     			Robot.oi.getLeftStickX() * speedModifier);
 //    	Robot.drive.tankDrive(Robot.oi.getLeftStickY(), Robot.oi.getRightStickY());
 //    	Robot.drive.testDrive(Robot.oi.getRightTrigger() * speedModifier, Robot.oi.getLeftTrigger() * speedModifier, Robot.oi.getLeftStickX() * speedModifier);
+    	SmartDashboard.putNumber("Arm Angle ", Robot.arm.getArmPos());
+    	SmartDashboard.putNumber("Displacement ", NetworkTable.getTable("SmartDashboard").getNumber("DisplacementX", 0.0));
+    	SmartDashboard.putNumber("Image Count  ", NetworkTable.getTable("SmartDashboard").getNumber("IMAGE_COUNT", 0.0));
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

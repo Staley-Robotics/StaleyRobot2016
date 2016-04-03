@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4959.robot.subsystems.Shooter;
 import org.usfirst.frc.team4959.robot.subsystems.Vision;
+import org.usfirst.frc.team4959.robot.commands.Delay;
 import org.usfirst.frc.team4959.robot.commands.Auto.AutoLowBar;
 import org.usfirst.frc.team4959.robot.commands.Auto.AutoMoat;
 import org.usfirst.frc.team4959.robot.commands.Auto.AutoRoughTerrain;
-import org.usfirst.frc.team4959.robot.commands.Auto.AutoWheelMoat;
+import org.usfirst.frc.team4959.robot.commands.Auto.AutoWheelLowBar;
+import org.usfirst.frc.team4959.robot.commands.Auto.AutoWheelUtil;
 import org.usfirst.frc.team4959.robot.subsystems.Arm;
 import org.usfirst.frc.team4959.robot.subsystems.BackFlipper;
 import org.usfirst.frc.team4959.robot.subsystems.Drive;
@@ -67,7 +69,9 @@ public class Robot extends IterativeRobot {
         autonomousModes.addDefault("Low Bar", new AutoLowBar());
         autonomousModes.addObject("Moat/ Rock Wall", new AutoMoat());
         autonomousModes.addObject("Rough Terrain", new AutoRoughTerrain());
-        autonomousModes.addObject("Wheel Low Bar", new AutoWheelMoat());
+        autonomousModes.addObject("Wheel Low Bar", new AutoWheelLowBar());
+        autonomousModes.addObject("Wheel Util", new AutoWheelUtil());
+
 
 //        autonomousModes.addObject("Touch Defense", new TouchDefense());
         SmartDashboard.putData("Autonomous Modes", autonomousModes);
@@ -80,7 +84,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
     	autonomousCommand = (Command) autonomousModes.getSelected();
-//    	autonomousCommand = new AutoLowBar();
+//    	autonomousCommand = new AutoWheelUtil();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 

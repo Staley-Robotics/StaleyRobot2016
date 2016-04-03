@@ -67,7 +67,7 @@ public class OI {
 		
 		// low power button
 		Button lowSpeed = new JoystickButton(xboxController, RobotMap.A_BUTTON);
-		lowSpeed.whileHeld(new JoystickDrive(0.7));
+		lowSpeed.whileHeld(new JoystickDrive(0.5));
 		
 		
 		
@@ -83,7 +83,7 @@ public class OI {
 		intake.whileHeld(new RunIntake());
 		
 		// clear arm button
-		Button clearAngle = new JoystickButton(joystick, 3);
+		Button clearAngle = new JoystickButton(joystick, 4);
 		clearAngle.whenPressed(new ClearAngle());
 		
 		// reset encoder button
@@ -91,31 +91,33 @@ public class OI {
 		zeroEncoder.whenPressed(new ZeroEncoder());
 		
 		// auto aim
-		Button autoAim = new JoystickButton(joystick, 4);
-		autoAim.whenPressed(new AutoSetArm());
-		
+//		Button autoAim = new JoystickButton(joystick, 4);
+//		autoAim.whenPressed(new AutoSetArm());
+//		
 		// auto line up
-		Button autoLineUp = new JoystickButton(joystick, 6);
-		autoLineUp.whenPressed(new AutoLineUp());
-		
-		// set arm buttons
-		Button setArm30 = new JoystickButton(joystick, 7);
-		setArm30.whenPressed(new SetArm(30));
-		
-		Button setArm45 = new JoystickButton(joystick, 8);
-		setArm45.whenPressed(new SetArm(45));
-
-		Button setArm60 = new JoystickButton(joystick, 9);
-		setArm60.whenPressed(new SetArm(60));
+//		Button autoLineUp = new JoystickButton(joystick, 4);
+//		autoLineUp.whenPressed(new AutoLineUp());
+//		
+//		// set arm buttons
+//		Button setArm30 = new JoystickButton(joystick, 7);
+//		setArm30.whenPressed(new SetArm(30));
+//		
+//		Button setArm45 = new JoystickButton(joystick, 8);
+//		setArm45.whenPressed(new SetArm(45));
+//
+//		Button setArm60 = new JoystickButton(joystick, 9);
+//		setArm60.whenPressed(new SetArm(60));
 	
-		Button setArm65 = new JoystickButton(joystick, 10);
-		setArm65.whenPressed(new SetArm(65));
+		// Outerworks shot
+		Button outerWorks = new JoystickButton(joystick, 6);
+		outerWorks.whenPressed(new SetArm(66));
 		
-		Button setArm70 = new JoystickButton(joystick, 11);
-		setArm70.whenPressed(new SetArm(70));
+//		Button setArm70 = new JoystickButton(joystick, 11);
+//		setArm70.whenPressed(new SetArm(70));
 		
-		Button setArm79 = new JoystickButton(joystick, 12);
-		setArm79.whenPressed(new SetArm(81));
+		// Batter shot
+		Button batter = new JoystickButton(joystick, 7);
+		batter.whenPressed(new SetArm(79));
 		
 //		Button setServo = new JoystickButton(joystick, 4);
 //		setServo.whenPressed(new SetServoSequence());

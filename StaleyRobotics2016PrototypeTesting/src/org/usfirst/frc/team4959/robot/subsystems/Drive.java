@@ -30,7 +30,7 @@ public class Drive extends Subsystem {
     }
     
     public void worldOfTanksDrive(double forward, double backward, double rotate) {
-    	double speedModifier = 1;
+    	double speedModifier = 0.95;
     	double turnSpeedModifier = 1;
     	
     	if(backward * speedModifier > 0) {
